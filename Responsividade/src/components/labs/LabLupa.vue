@@ -3,16 +3,25 @@ import { ref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 
 // Simula a configuração "tamanho da fonte" do navegador.
 // Usamos % (e não px) na raiz para respeitar o valor que a pessoa já escolheu.
+// Botões em vez de slider: como a página inteira cresce, um slider
+// "fugiria" de baixo do dedo/mouse enquanto a pessoa arrasta.
+const ESCALAS = [75, 100, 125, 150, 175, 200]
+
 const escala = ref(100)
 const pxPorRem = ref(16)
 const tamanhoPx = ref(16)
 const tamanhoRem = ref(16)
+const lab = ref(null)
 const textoPx = ref(null)
 const textoRem = ref(null)
 
 async function aplicarEscala() {
+  // Guarda onde o laboratório estava na tela antes de tudo crescer...
+  const topoAntes = lab.value.getBoundingClientRect().top
   document.documentElement.style.fontSize = `${escala.value}%`
   await nextTick()
+  // ...e rola a página para ele continuar exatamente no mesmo lugar.
+  window.scrollBy(0, lab.value.getBoundingClientRect().top - topoAntes)
   // Lê o tamanho que o navegador calculou de verdade para cada texto.
   pxPorRem.value = parseFloat(getComputedStyle(document.documentElement).fontSize)
   tamanhoPx.value = parseFloat(getComputedStyle(textoPx.value).fontSize)
@@ -29,18 +38,23 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="lab">
-    <div class="lab__controle">
-      <label for="lupa-escala">
-        Tamanho da fonte do navegador: <strong>{{ escala }}%</strong>
-      </label>
-      <input id="lupa-escala" v-model.number="escala" type="range" min="75" max="200" step="25" />
-    </div>
+  <div ref="lab" class="lab">
+    <p id="lupa-titulo" class="lupa__titulo">
+      Tamanho da fonte do navegador: <strong>{{ escala }}%</strong>
+    </p>
 
-    <div class="lupa__atalhos">
-      <button type="button" class="botao botao--secundario" @click="escala = 100">Padrão (100%)</button>
-      <button type="button" class="botao botao--secundario" @click="escala = 150">Grande (150%)</button>
-      <button type="button" class="botao botao--secundario" @click="escala = 200">Enorme (200%)</button>
+    <div class="lupa__atalhos" role="group" aria-labelledby="lupa-titulo">
+      <button
+        v-for="valor in ESCALAS"
+        :key="valor"
+        type="button"
+        class="botao"
+        :class="{ 'botao--secundario': valor !== escala }"
+        :aria-pressed="valor === escala"
+        @click="escala = valor"
+      >
+        {{ valor }}%
+      </button>
     </div>
 
     <p class="lab__info">
@@ -65,6 +79,10 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.lupa__titulo {
+  margin-bottom: var(--esp-2);
+}
+
 .lupa__atalhos {
   display: flex;
   flex-wrap: wrap;
