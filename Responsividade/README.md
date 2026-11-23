@@ -1,38 +1,71 @@
-# Responsividade
+# Guia Responsivo
 
-This template should help get you started developing with Vue 3 in Vite.
+Guia interativo, feito em Vue 3, que ensina a criar páginas que funcionam em qualquer tela.
+Cada seção tem uma explicação curta, código comentado, laboratório interativo, a resposta da
+pergunta-guia e as fontes consultadas.
 
-## Recommended IDE Setup
+- **Site publicado:** _(colocar o link aqui)_
+- **Dupla:** _(nomes)_
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Seções
 
-## Recommended Browser Setup
+| # | Seção | Rota | Laboratórios |
+|---|---|---|---|
+| 1 | Por que responsividade importa | `/por-que-importa` | Celular sem óculos (meta viewport ligada/desligada) |
+| 2 | Unidades CSS | `/unidades` | Lupa de acessibilidade (px x rem) e conversor de unidades |
+| 3 | Flexbox e Grid | `/flexbox-e-grid` | Calculadora de colunas (auto-fit + minmax) e playground de Flexbox |
+| 4 | Imagens responsivas | `/imagens` | Medidor de pulo (CLS real), moldura com object-fit e srcset |
+| 5 | Boas práticas em Vue | `/boas-praticas` | :key ou caos? (lista com e sem key, dados de API + Pinia) |
+| 6 | Desafio | `/desafio` | Perguntas que só se respondem usando os laboratórios |
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Em todas as páginas há um **indicador fixo** no canto com a largura da janela e o breakpoint
+ativo.
 
-## Customize configuration
+## Tecnologias
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Vue 3 + Vite (criado com `npm create vue@latest`)
+- Vue Router, com uma rota por seção carregada sob demanda (lazy loading)
+- Pinia: store `tela` (largura/breakpoint) e store `animais` (consome a API pública dog.ceo)
 
-## Project Setup
+## Regras de responsividade seguidas
+
+- CSS **mobile-first**: o estilo fora de media query é o do celular; as media queries usam
+  apenas `min-width` (40rem, 48rem e 64rem).
+- Fontes e espaçamentos em `rem`; cores e espaçamentos como variáveis CSS no `:root`
+  (`src/assets/main.css`).
+- Sem rolagem horizontal: imagens com `max-width: 100%`, código com `white-space: pre-wrap` e
+  laboratórios limitados à largura disponível.
+- No celular, o menu vira um botão (`AppCabecalho.vue`).
+
+## Estrutura
+
+```
+src/
+├── assets/main.css      design tokens e estilos base
+├── components/
+│   ├── guia/            SecaoGuia (molde das seções) e BlocoCodigo
+│   ├── labs/            um componente por laboratório
+│   └── layout/          cabeçalho e indicador de breakpoint
+├── data/secoes.js       lista das seções (menu e página inicial)
+├── router/index.js      rotas
+├── stores/              Pinia
+└── views/               uma página por seção
+```
+
+## Como rodar
 
 ```sh
+cd Responsividade
 npm install
+npm run dev      # desenvolvimento
+npm run build    # gera a pasta dist/
 ```
 
-### Compile and Hot-Reload for Development
+## Publicação (Vercel)
 
-```sh
-npm run dev
-```
+1. Importe o repositório na Vercel.
+2. Em **Root Directory**, escolha a pasta `Responsividade`.
+3. Framework: Vite. Build: `npm run build`. Output: `dist`.
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+O `vercel.json` redireciona todas as rotas para o `index.html`, para que recarregar a página
+em `/unidades` (por exemplo) não dê erro 404.
