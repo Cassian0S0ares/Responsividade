@@ -9,6 +9,7 @@ const router = createRouter({
     { path: '/', name: 'inicio', component: HomeView },
     { path: '/por-que-importa', name: 'por-que-importa', component: () => import('@/views/PorQueImportaView.vue') },
     { path: '/unidades', name: 'unidades', component: () => import('@/views/UnidadesView.vue') },
+    { path: '/flexbox-e-grid', name: 'flexbox-e-grid', component: () => import('@/views/FlexGridView.vue') },
     { path: '/:caminho(.*)*', redirect: '/' },
   ],
   scrollBehavior() {
