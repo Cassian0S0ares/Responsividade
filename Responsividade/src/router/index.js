@@ -12,6 +12,7 @@ const router = createRouter({
     { path: '/flexbox-e-grid', name: 'flexbox-e-grid', component: () => import('@/views/FlexGridView.vue') },
     { path: '/imagens', name: 'imagens', component: () => import('@/views/ImagensView.vue') },
     { path: '/boas-praticas', name: 'boas-praticas', component: () => import('@/views/BoasPraticasView.vue') },
+    { path: '/desafio', name: 'desafio', component: () => import('@/views/DesafioView.vue') },
     { path: '/:caminho(.*)*', redirect: '/' },
   ],
   scrollBehavior() {
