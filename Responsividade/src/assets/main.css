@@ -117,7 +117,34 @@ code {
   color: var(--cor-destaque);
 }
 
+/* Caixa padrão dos laboratórios */
+.lab {
+  padding: var(--esp-3);
+  border: 0.0625rem dashed var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+}
+
+.lab__info {
+  margin-top: var(--esp-3);
+  font-size: var(--tam-p);
+}
+
+.lab__controle {
+  display: grid;
+  gap: var(--esp-1);
+  margin-bottom: var(--esp-3);
+}
+
+.lab__controle input[type='range'] {
+  width: 100%;
+}
+
 @media (min-width: 48rem) {
+  .lab {
+    padding: var(--esp-4);
+  }
+
   h1 {
     font-size: var(--tam-ggg);
   }

@@ -7,6 +7,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'inicio', component: HomeView },
+    { path: '/por-que-importa', name: 'por-que-importa', component: () => import('@/views/PorQueImportaView.vue') },
     { path: '/:caminho(.*)*', redirect: '/' },
   ],
   scrollBehavior() {
