@@ -1,11 +1,27 @@
-<script setup></script>
+<script setup>
+import { RouterView } from 'vue-router'
+import AppCabecalho from '@/components/layout/AppCabecalho.vue'
+import IndicadorBreakpoint from '@/components/layout/IndicadorBreakpoint.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <AppCabecalho />
+  <main class="conteudo">
+    <RouterView />
+  </main>
+  <IndicadorBreakpoint />
 </template>
 
-<style scoped></style>
+<style scoped>
+.conteudo {
+  max-width: var(--largura-conteudo);
+  margin: 0 auto;
+  padding: var(--esp-4) var(--esp-3) var(--esp-6);
+}
+
+@media (min-width: 48rem) {
+  .conteudo {
+    padding: var(--esp-5) var(--esp-4) var(--esp-6);
+  }
+}
+</style>

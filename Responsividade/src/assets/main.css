@@ -1,0 +1,124 @@
+/*
+  Design tokens: todas as cores e espaçamentos do site moram aqui.
+  Para mudar o visual, troque os valores destas variáveis.
+*/
+:root {
+  --cor-fundo: #f4f1ea;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1d1d1b;
+  --cor-texto-suave: #55534d;
+  --cor-destaque: #c2410c;
+  --cor-destaque-texto: #ffffff;
+  --cor-borda: #d6d1c4;
+  --cor-codigo-fundo: #1f2328;
+  --cor-codigo-texto: #e6edf3;
+  --cor-ok: #15803d;
+  --cor-erro: #b91c1c;
+
+  --fonte-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-mono: ui-monospace, Consolas, 'Courier New', monospace;
+
+  --tam-p: 0.875rem;
+  --tam-m: 1rem;
+  --tam-g: 1.25rem;
+  --tam-gg: 1.75rem;
+  --tam-ggg: 2.25rem;
+
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+  --esp-5: 2rem;
+  --esp-6: 3rem;
+
+  --raio: 0.5rem;
+  --largura-conteudo: 60rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Mobile-first: tudo fora de media query é o estilo do celular. */
+body {
+  margin: 0;
+  font-family: var(--fonte-base);
+  font-size: var(--tam-m);
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  overflow-wrap: break-word;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--esp-3);
+}
+
+h1 {
+  font-size: var(--tam-gg);
+}
+
+h2 {
+  font-size: var(--tam-g);
+}
+
+p {
+  margin: 0 0 var(--esp-3);
+}
+
+a {
+  color: var(--cor-destaque);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--cor-destaque);
+  outline-offset: 0.125rem;
+}
+
+code {
+  font-family: var(--fonte-mono);
+  font-size: 0.9em;
+}
+
+/* Botão padrão reaproveitado pelos laboratórios */
+.botao {
+  padding: var(--esp-2) var(--esp-3);
+  border: 0.0625rem solid var(--cor-destaque);
+  border-radius: var(--raio);
+  background: var(--cor-destaque);
+  color: var(--cor-destaque-texto);
+}
+
+.botao--secundario {
+  background: transparent;
+  color: var(--cor-destaque);
+}
+
+@media (min-width: 48rem) {
+  h1 {
+    font-size: var(--tam-ggg);
+  }
+}
