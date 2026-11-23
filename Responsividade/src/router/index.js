@@ -8,6 +8,7 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'inicio', component: HomeView },
     { path: '/por-que-importa', name: 'por-que-importa', component: () => import('@/views/PorQueImportaView.vue') },
+    { path: '/unidades', name: 'unidades', component: () => import('@/views/UnidadesView.vue') },
     { path: '/:caminho(.*)*', redirect: '/' },
   ],
   scrollBehavior() {
