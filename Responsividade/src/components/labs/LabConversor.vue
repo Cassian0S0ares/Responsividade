@@ -36,12 +36,25 @@ async function medir() {
   fontePai.value = parseFloat(getComputedStyle(pai.value).fontSize)
 }
 
+// rem, em e ch dependem da fonte da raiz, que a Lupa (na mesma página) altera
+// pelo atributo style do <html>; % depende da largura da caixa-pai. Sem
+// observar os dois, o resultado ficaria com o valor antigo na tela.
+let observadorCaixa
+let observadorRaiz
 watch([valorValido, unidade], medir)
 onMounted(() => {
   medir()
   window.addEventListener('resize', medir)
+  observadorCaixa = new ResizeObserver(() => medir())
+  observadorCaixa.observe(pai.value)
+  observadorRaiz = new MutationObserver(() => medir())
+  observadorRaiz.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] })
 })
-onBeforeUnmount(() => window.removeEventListener('resize', medir))
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', medir)
+  observadorCaixa?.disconnect()
+  observadorRaiz?.disconnect()
+})
 </script>
 
 <template>
