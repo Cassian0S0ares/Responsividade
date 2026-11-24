@@ -36,7 +36,7 @@ const codigoGrid = `
 const fontes = [
   { titulo: 'MDN: Conceitos básicos do Flexbox', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts' },
   { titulo: 'MDN: Conceitos básicos do Grid Layout', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Grid_layout/Basic_concepts' },
-  { titulo: 'MDN: repeat() (em inglês)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/repeat' },
+  { titulo: 'MDN: repeat()', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/repeat' },
   { titulo: 'CSS-Tricks: A Complete Guide to Flexbox', url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/' },
   { titulo: 'CSS-Tricks: A Complete Guide to CSS Grid', url: 'https://css-tricks.com/complete-guide-css-grid-layout/' },
   { titulo: 'web.dev: Learn CSS – Grid', url: 'https://web.dev/learn/css/grid' },

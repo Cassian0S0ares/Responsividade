@@ -53,7 +53,7 @@ const fontes = [
   { titulo: 'web.dev: Optimize Cumulative Layout Shift', url: 'https://web.dev/articles/optimize-cls' },
   { titulo: 'web.dev: Browser-level image lazy loading', url: 'https://web.dev/articles/browser-level-image-lazy-loading' },
   { titulo: 'MDN: object-fit', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Reference/Properties/object-fit' },
-  { titulo: 'MDN: aspect-ratio (em inglês)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio' },
+  { titulo: 'MDN: aspect-ratio', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio' },
 ]
 </script>
 

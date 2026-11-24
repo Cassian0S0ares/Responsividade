@@ -40,7 +40,7 @@ p  { font-size: 1rem; }
 `
 
 const fontes = [
-  { titulo: 'MDN: Valores e unidades CSS (em inglês)', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units' },
+  { titulo: 'MDN: CSS values and units', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units' },
   { titulo: 'web.dev: Sizing units', url: 'https://web.dev/learn/css/sizing' },
   { titulo: 'Josh W. Comeau: The Surprising Truth About Pixels and Accessibility', url: 'https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/' },
   { titulo: 'W3C WCAG: Critério 1.4.4 Redimensionar texto', url: 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html' },
