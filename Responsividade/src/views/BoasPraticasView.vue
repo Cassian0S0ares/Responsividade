@@ -83,7 +83,7 @@ const fontes = [
   { titulo: 'Vue Router: Lazy loading de rotas', url: 'https://router.vuejs.org/guide/advanced/lazy-loading.html' },
   { titulo: 'Pinia: Documentação', url: 'https://pinia.vuejs.org/' },
   { titulo: 'web.dev: Web Vitals', url: 'https://web.dev/articles/vitals' },
-  { titulo: 'MDN: Propriedades personalizadas (variáveis CSS)', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties' },
+  { titulo: 'MDN: Propriedades personalizadas (variáveis CSS)', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties' },
 ]
 </script>
 

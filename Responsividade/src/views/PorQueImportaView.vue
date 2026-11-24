@@ -27,10 +27,10 @@ const codigoCss = `
 `
 
 const fontes = [
-  { titulo: 'MDN: A meta tag viewport', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML/Viewport_meta_tag' },
-  { titulo: 'MDN: Design responsivo', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/CSS/CSS_layout/Responsive_Design' },
+  { titulo: 'MDN: A meta tag viewport (em inglês)', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport' },
+  { titulo: 'MDN: Design responsivo', url: 'https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/CSS_layout/Responsive_Design' },
   { titulo: 'web.dev: Responsive web design basics', url: 'https://web.dev/articles/responsive-web-design-basics' },
-  { titulo: 'MDN: Usando media queries', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_media_queries/Using_media_queries' },
+  { titulo: 'MDN: Usando media queries', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Media_queries/Using' },
 ]
 </script>
 

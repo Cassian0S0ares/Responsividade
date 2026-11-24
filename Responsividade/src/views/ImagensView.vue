@@ -48,12 +48,12 @@ const codigoHtml = `
 `
 
 const fontes = [
-  { titulo: 'MDN: Imagens responsivas', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images' },
+  { titulo: 'MDN: Imagens responsivas', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML/Guides/Responsive_images' },
   { titulo: 'web.dev: Cumulative Layout Shift (CLS)', url: 'https://web.dev/articles/cls' },
   { titulo: 'web.dev: Optimize Cumulative Layout Shift', url: 'https://web.dev/articles/optimize-cls' },
   { titulo: 'web.dev: Browser-level image lazy loading', url: 'https://web.dev/articles/browser-level-image-lazy-loading' },
-  { titulo: 'MDN: object-fit', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/object-fit' },
-  { titulo: 'MDN: aspect-ratio', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/aspect-ratio' },
+  { titulo: 'MDN: object-fit', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Reference/Properties/object-fit' },
+  { titulo: 'MDN: aspect-ratio (em inglês)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio' },
 ]
 </script>
 
