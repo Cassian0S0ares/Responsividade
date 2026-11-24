@@ -36,8 +36,6 @@ const fontes = [
 
 <template>
   <SecaoGuia
-    :numero="1"
-    titulo="Por que responsividade importa"
     pergunta="Um site tem media queries bem escritas, mas não tem a meta tag viewport. No celular, ele aparece como a versão de computador, só que minúscula. Por que isso acontece, e o que a meta viewport muda?"
     :fontes="fontes"
   >

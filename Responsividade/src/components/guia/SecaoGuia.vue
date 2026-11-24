@@ -1,24 +1,26 @@
 <script setup>
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import AeroIcon from '@/components/layout/AeroIcon.vue'
 import { secoes } from '@/data/secoes'
-const props = defineProps({
-  numero: { type: Number, required: true },
-  titulo: { type: String, required: true },
+defineProps({
   pergunta: { type: String, required: true },
   fontes: { type: Array, required: true },
 })
-const atual = computed(() => secoes[props.numero - 1])
-const anterior = computed(() => secoes[props.numero - 2])
-const proxima = computed(() => secoes[props.numero])
+// A rota identifica a seção; assim reordenar secoes.js não troca título nem ícone.
+const route = useRoute()
+const indice = computed(() => secoes.findIndex((s) => s.rota === route.path))
+const atual = computed(() => secoes[indice.value])
+const anterior = computed(() => secoes[indice.value - 1])
+const proxima = computed(() => secoes[indice.value + 1])
+const total = secoes.length
 </script>
 
 <template>
   <article class="secao">
     <header class="secao__cabecalho">
       <AeroIcon :tipo="atual.icone" />
-      <div><p class="secao__numero">Explore o guia · Seção {{ numero }} de 6</p><h1>{{ titulo }}</h1><p class="secao__resumo">{{ atual.descricao }}</p></div>
+      <div><p class="secao__numero">Explore o guia · Seção {{ atual.numero }} de {{ total }}</p><h1>{{ atual.titulo }}</h1><p class="secao__resumo">{{ atual.descricao }}</p></div>
     </header>
     <nav class="secao__atalhos" aria-label="Nesta seção">
       <a href="#explicacao">Entender</a>

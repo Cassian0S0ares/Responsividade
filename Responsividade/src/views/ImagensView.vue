@@ -59,8 +59,6 @@ const fontes = [
 
 <template>
   <SecaoGuia
-    :numero="4"
-    titulo="Imagens responsivas"
     pergunta="Ao abrir uma página, o texto aparece primeiro. Quando a imagem termina de carregar, ela empurra o texto para baixo. Por que isso acontece quando a imagem não tem width e height no HTML? Qual métrica do Google mede esse problema?"
     :fontes="fontes"
   >

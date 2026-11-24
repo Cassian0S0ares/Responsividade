@@ -89,8 +89,6 @@ const fontes = [
 
 <template>
   <SecaoGuia
-    :numero="5"
-    titulo="Boas práticas em projetos Vue"
     pergunta="Uma lista de animais é exibida com v-for, sem :key, e cada item tem um campo de texto. A pessoa digita algo no campo do segundo animal, e em seguida o primeiro animal é removido da lista. O que pode acontecer com o texto digitado, e por quê?"
     :fontes="fontes"
   >

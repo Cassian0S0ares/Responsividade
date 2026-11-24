@@ -50,8 +50,6 @@ const fontes = [
 
 <template>
   <SecaoGuia
-    :numero="2"
-    titulo="Unidades CSS"
     pergunta="Uma pessoa com baixa visão aumenta o tamanho da fonte nas configurações do navegador. O texto definido em px continua do mesmo tamanho, e o definido em rem aumenta. Por que essa diferença acontece?"
     :fontes="fontes"
   >

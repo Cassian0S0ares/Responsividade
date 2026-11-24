@@ -45,8 +45,6 @@ const fontes = [
 
 <template>
   <SecaoGuia
-    :numero="3"
-    titulo="Flexbox e Grid"
     pergunta="Um contêiner usa grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)) e gap: 1rem. A partir de qual largura do contêiner, em px, os cards deixam de ficar em 1 coluna e passam para 2? Considerem 1rem = 16px e mostrem a conta."
     :fontes="fontes"
   >
