@@ -77,6 +77,14 @@ function trocarModo() {
     <div class="cls-lab__noticia">
       <h4>Primavera chega com céu limpo no interior</h4>
 
+      <!-- Sem width e height: o skeleton fica com uma altura "chutada", diferente da
+           foto real, então quando a foto chega o texto pula do mesmo jeito. -->
+      <div
+        v-if="!comDimensoes && estado === 'carregando'"
+        class="skeleton cls-lab__skeleton-chutado"
+        aria-hidden="true"
+      ></div>
+
       <!-- Com width e height: o navegador calcula a proporção (736/460) e reserva o espaço antes. -->
       <img
         v-if="comDimensoes"
@@ -89,14 +97,7 @@ function trocarModo() {
         :class="{ skeleton: estado === 'carregando' }"
         @load="aoCarregar"
       />
-      <!-- Sem width e height: o navegador não sabe o tamanho até a imagem chegar.
-           O skeleton fica com uma altura "chutada", diferente da foto real,
-           então quando a foto chega o texto pula do mesmo jeito. -->
-      <div
-        v-if="!comDimensoes && estado === 'carregando'"
-        class="skeleton cls-lab__skeleton-chutado"
-        aria-hidden="true"
-      ></div>
+      <!-- Sem width e height: o navegador não sabe o tamanho até a imagem chegar. -->
       <img
         v-else
         :key="`sem-${rodada}`"
