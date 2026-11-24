@@ -9,6 +9,7 @@ const largura = ref(320)
 const disponivel = ref(320)
 const pxPorRem = ref(16)
 const colunasReais = ref(1)
+const larguraCard = ref(0)
 const area = ref(null)
 const grade = ref(null)
 let observador
@@ -38,6 +39,9 @@ const colunasCalculadas = computed(() =>
 const larguraPara = (n) => n * minPx.value + (n - 1) * gapPx.value
 const proxima = computed(() => colunasCalculadas.value + 1)
 
+// Maior mínimo (em rem inteiro) que ainda deixa caber 2 colunas na largura atual.
+const minimoParaDuas = computed(() => Math.floor((largura.value - gapPx.value) / 2 / pxPorRem.value))
+
 // Confere com o navegador: conta as colunas que o CSS realmente criou.
 watch(
   [largura, minRem, gapRem],
@@ -46,6 +50,7 @@ watch(
     if (!grade.value) return
     const trilhas = getComputedStyle(grade.value).gridTemplateColumns.split(' ')
     colunasReais.value = trilhas.filter((t) => parseFloat(t) > 0).length
+    larguraCard.value = Math.round(grade.value.firstElementChild.getBoundingClientRect().width)
   },
   { immediate: true, flush: 'post' },
 )
@@ -80,6 +85,19 @@ watch(
         <span v-if="larguraPara(proxima) > disponivel"> (não cabe nesta tela, gire o celular ou use um monitor maior)</span>
       </template>
     </p>
+    <p class="grid-lab__conta">
+      Cada card tem <strong>{{ larguraCard }}px</strong>: o mínimo é {{ minPx }}px e o
+      <code>1fr</code> estica o card para dividir o espaço que sobra.
+    </p>
+    <p v-if="colunasReais === 1 && larguraPara(2) > largura" class="grid-lab__aviso">
+      Já está em 1 coluna: aumentar o mínimo não muda nada, porque o card já ocupa tudo.
+      <template v-if="minimoParaDuas >= 8">
+        <strong>Diminua o mínimo</strong> até {{ minimoParaDuas }}rem ou menos para caberem 2 colunas.
+      </template>
+      <template v-else>
+        <strong>Aumente a largura</strong> do contêiner: nesta largura, 2 colunas não cabem nem com o menor mínimo.
+      </template>
+    </p>
 
     <div ref="area" class="grid-lab__area">
       <div
@@ -91,7 +109,11 @@ watch(
           gap: `${gapRem}rem`,
         }"
       >
-        <div v-for="n in TOTAL_CARDS" :key="n" class="grid-lab__card">{{ n }}</div>
+        <div v-for="n in TOTAL_CARDS" :key="n" class="grid-lab__card">
+          {{ n }}
+          <!-- Linha tracejada: o tamanho mínimo que o card pode ter -->
+          <span class="grid-lab__minimo" :style="{ width: `min(${minRem}rem, 100%)` }"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -117,13 +139,28 @@ watch(
   outline: 0.125rem dashed var(--cor-destaque);
 }
 
+.grid-lab__aviso {
+  padding: var(--esp-2) var(--esp-3);
+  border-left: 0.25rem solid var(--cor-destaque);
+  background: var(--cor-fundo);
+  font-size: var(--tam-p);
+}
+
 .grid-lab__card {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 4rem;
   border-radius: var(--raio);
   background: var(--cor-fundo);
   font-weight: 700;
+}
+
+.grid-lab__minimo {
+  position: absolute;
+  left: 0;
+  bottom: var(--esp-1);
+  border-top: 0.1875rem dashed var(--cor-destaque);
 }
 
 @media (min-width: 48rem) {
