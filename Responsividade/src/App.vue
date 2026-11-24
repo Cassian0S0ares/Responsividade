@@ -78,65 +78,72 @@ router.afterEach(async (to, from, falha) => {
 </template>
 
 <style scoped>
-.ambiente { padding: 0 2rem 3rem; }
-.janela { max-width: var(--largura-conteudo); margin: auto; padding: 0 .5rem .5rem; border: 1px solid #e6ffffd9; border-radius: 9px; background: linear-gradient(110deg, #c9f0ffa6, #e7fbffd4 45%, #91d1e9c4); box-shadow: 0 10px 45px #00375d66, inset 0 0 0 1px #3b93b750; }
-.janela__titulo { display: flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .25rem .5rem; font-size: .875rem; color: #143f56; text-shadow: 0 1px #fff; }
+/* Mobile-first: as regras fora de media query sao as do celular; cada
+   @media (min-width) acrescenta o que muda em telas maiores. */
+.ambiente { padding: 0 var(--esp-2) var(--esp-6); }
+.janela { max-width: var(--largura-conteudo); margin: auto; padding: 0 var(--esp-1) var(--esp-1); border: 1px solid var(--azul-95-a85); border-radius: 9px; background: linear-gradient(110deg, var(--azul-89-a65), var(--azul-95-a83) 45%, var(--azul-74-a77)); box-shadow: 0 10px 45px var(--azul-18-a40), inset 0 0 0 1px var(--azul-47-a31); }
+.janela__titulo { display: flex; align-items: center; gap: var(--esp-2); min-height: 2.5rem; padding: var(--esp-1) var(--esp-2); font-size: .875rem; color: var(--azul-21); text-shadow: 0 1px var(--branco); }
 .janela__titulo > .aero-icon { width: 1.5rem; height: 1.5rem; }
 .janela__titulo > span { min-width: 0; }
-.janela__ornamento { display: flex; gap: .3rem; margin-left: auto; padding-left: .5rem; }
-.janela__ornamento i { width: .35rem; height: .35rem; border-radius: 50%; background: #4a98b7; box-shadow: 0 1px #fff; }
-.janela__interior { border: 1px solid #6facc4; border-radius: 3px; overflow: clip; background: #fff; }
-.barra-caminho { display: flex; align-items: center; gap: .75rem; padding: .6rem .8rem; background: linear-gradient(#f9fdff, #e7f0f5); border-bottom: 1px solid #adc8d4; font-size: .875rem; }
-.endereco { display: flex; align-items: center; gap: .75rem; flex: 1; min-width: 0; padding: .25rem .65rem; border: 1px solid #b1c7d1; border-radius: 3px; background: #fff; box-shadow: inset 0 1px 2px #26536d0d; }
+.janela__subtitulo { display: none; }
+.janela__ornamento { display: flex; gap: var(--esp-030); margin-left: auto; padding-left: var(--esp-2); }
+.janela__ornamento i { width: .35rem; height: .35rem; border-radius: 50%; background: var(--azul-50); box-shadow: 0 1px var(--branco); }
+.janela__interior { border: 1px solid var(--azul-60); border-radius: 3px; overflow: clip; background: var(--branco); }
+.barra-caminho { display: flex; align-items: center; gap: var(--esp-040); padding: var(--esp-2); background: linear-gradient(var(--cinza-99-v3), var(--azul-93-v4)); border-bottom: 1px solid var(--azul-75-v2); font-size: .875rem; }
+.endereco { display: flex; align-items: center; gap: var(--esp-040); flex: 1; min-width: 0; min-height: 2.5rem; padding: var(--esp-1) var(--esp-065); border: 1px solid var(--azul-76-v3); border-radius: 3px; background: var(--branco); box-shadow: inset 0 1px 2px var(--azul-29-a5); }
 .endereco a { text-decoration: none; }
 .endereco > span { min-width: 0; }
-.endereco__descricao { color: #587786; border-left: 1px solid #c7dbe2; padding-left: .75rem; }
-.barra-caminho__tipo { padding: 0 .25rem; color: #506f80; }
-.menu-botao { display: none; }
-.area-trabalho { display: grid; grid-template-columns: 13rem minmax(0, 1fr); }
-.explorador { position: relative; display: flex; flex-direction: column; border-right: 1px solid #bfd6e0; background: linear-gradient(100deg, #f8fcfe, #eaf4f8); overflow: hidden; }
-.explorador nav { padding: 1rem .6rem; }
-.explorador ul { margin: 0; padding: 0; list-style: none; }
-.explorador a { display: flex; align-items: center; gap: .6rem; min-height: 3rem; padding: .4rem .6rem; margin-bottom: .15rem; border: 1px solid transparent; border-radius: 4px; font-size: .875rem; text-decoration: none; color: #345d72; }
-.explorador a:hover { background: #e1f1f9; border-color: #bedce9; }
-.explorador .explorador__ativo { background: linear-gradient(#f3fcff, #c9e8f6); border-color: #92c3da; box-shadow: inset 0 1px #fff; color: #074c74; }
+.endereco__descricao { display: none; color: var(--azul-44); border-left: 1px solid var(--azul-83-v4); padding-left: var(--esp-075); }
+.barra-caminho__tipo { display: none; padding: 0 var(--esp-1); color: var(--azul-41); }
+/* No celular o menu vira este botao. */
+.menu-botao { display: inline-flex; min-height: 2.5rem; padding: var(--esp-035) var(--esp-065); font-size: .875rem; }
+.area-trabalho { display: block; }
+.explorador { position: relative; display: none; flex-direction: column; border-bottom: 1px solid var(--azul-77); background: linear-gradient(100deg, var(--cinza-98-v2), var(--azul-95)); overflow: hidden; }
+.explorador--aberto { display: block; }
+.explorador nav { padding: var(--esp-075); }
+.explorador ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.explorador a { display: flex; align-items: center; gap: var(--esp-040); min-height: 3rem; padding: var(--esp-040); margin-bottom: var(--esp-015); border: 1px solid transparent; border-radius: 4px; font-size: .875rem; text-decoration: none; color: var(--azul-33-v3); }
+.explorador a:hover { background: var(--azul-93); border-color: var(--azul-83); }
+.explorador .explorador__ativo { background: linear-gradient(var(--azul-98), var(--azul-88)); border-color: var(--azul-71); box-shadow: inset 0 1px var(--branco); color: var(--azul-24-v2); }
 .explorador .aero-icon { width: 2rem; height: 2rem; }
-.explorador__rotulo { margin: 1.3rem .7rem .5rem; font-size: .8125rem; color: #5b7686; }
-.explorador__nota { position: relative; z-index: 1; margin: 1.5rem 1.25rem 6rem; padding-top: 1.25rem; border-top: 1px solid #c2d9e3; font-size: .8125rem; color: #567785; }
-.explorador__nota .aero-icon { margin-bottom: .5rem; }
-.explorador__nota p { font-weight: 600; color: #467228; margin-bottom: .35rem; }
-.explorador__paisagem { height: 9rem; margin-top: auto; background: linear-gradient(#edf6fa, transparent 80%), url('@/assets/mundo-aero.jpg') 78% 65% / auto 280px; opacity: .7; }
+.explorador__rotulo { margin: var(--esp-2) var(--esp-070) var(--esp-2); font-size: .8125rem; color: var(--azul-44-v3); }
+.explorador__nota { display: none; position: relative; z-index: 1; margin: var(--esp-4) var(--esp-125) var(--esp-600); padding-top: var(--esp-125); border-top: 1px solid var(--azul-83-v2); font-size: .8125rem; color: var(--azul-43-v2); }
+.explorador__nota .aero-icon { margin-bottom: var(--esp-2); }
+.explorador__nota p { font-weight: 600; color: var(--verde-30-v2); margin-bottom: var(--esp-035); }
+.explorador__paisagem { display: none; height: 9rem; margin-top: auto; background: linear-gradient(var(--azul-95-v2), transparent 80%), url('@/assets/mundo-aero.jpg') 78% 65% / auto 280px; opacity: .7; }
 /* O padding vira variavel para que filhos possam sangrar ate a borda. */
-.conteudo { --pad-conteudo: clamp(1.25rem, 3vw, 2.5rem); min-width: 0; padding: var(--pad-conteudo); background: #fff; }
+.conteudo { --pad-conteudo: var(--esp-3); min-width: 0; padding: var(--pad-conteudo); background: var(--branco); }
 .conteudo:focus { outline: none; }
-.janela__rodape { display: flex; justify-content: space-between; gap: .75rem; padding: .45rem 1rem; border-top: 1px solid #bdd5df; background: linear-gradient(#f4f9fc, #e3edf3); color: #537483; font-size: .75rem; }
-.ambiente__rodape { text-align: center; padding: 1rem; color: #fff; text-shadow: 0 1px 4px #234d20, 0 1px 8px #234d20; font-size: .8125rem; }
-@media (min-width: 80rem) { .ambiente { padding-top: .75rem; } }
-@media (max-width: 60rem) {
-  .ambiente { padding: 0 1rem 3rem; }
-  .area-trabalho { grid-template-columns: 11rem minmax(0, 1fr); }
-  .explorador nav { padding-inline: .35rem; }
-  .explorador a { gap: .4rem; padding-inline: .4rem; }
-  .conteudo { --pad-conteudo: 1.5rem; }
+.janela__rodape { display: flex; justify-content: space-between; gap: var(--esp-075); padding: var(--esp-045) var(--esp-3); border-top: 1px solid var(--azul-81); background: linear-gradient(var(--cinza-97), var(--azul-92)); color: var(--azul-42-v2); font-size: .75rem; }
+.janela__rodape span:last-child { display: none; }
+.ambiente__rodape { text-align: center; padding: var(--esp-3); color: var(--branco); text-shadow: 0 1px 4px var(--verde-21), 0 1px 8px var(--verde-21); font-size: .8125rem; }
+/* Os limites somam 0.0625rem (1px) para que a largura exata do limite
+   (ex.: 768px) continue com o layout menor, como no desenho original. */
+@media (min-width: 30.0625rem) {
+  .ambiente { padding-inline: var(--esp-3); }
+  .janela { padding-inline: var(--esp-2); padding-bottom: var(--esp-2); }
+  .janela__subtitulo, .janela__rodape span:last-child { display: inline; }
+  .barra-caminho { padding: var(--esp-060) var(--esp-080); gap: var(--esp-075); }
+  .conteudo { --pad-conteudo: var(--esp-125); }
 }
-@media (max-width: 48rem) {
-  .area-trabalho { display: block; }
-  .explorador { display: none; border-right: 0; border-bottom: 1px solid #aecddc; }
-  .explorador--aberto { display: block; }
-  .explorador nav { padding: .75rem; }
-  .explorador ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .explorador__nota, .explorador__paisagem, .barra-caminho__tipo, .endereco__descricao { display: none; }
-  .explorador__rotulo { margin-top: .5rem; }
-  .menu-botao { display: inline-flex; min-height: 2.5rem; padding: .35rem .65rem; font-size: .875rem; }
-  .endereco { gap: .4rem; min-height: 2.5rem; }
-  .conteudo { --pad-conteudo: 1.25rem; }
+@media (min-width: 48.0625rem) {
+  .menu-botao { display: none; }
+  .endereco { gap: var(--esp-075); min-height: auto; }
+  .endereco__descricao, .barra-caminho__tipo { display: inline; }
+  .area-trabalho { display: grid; grid-template-columns: 11rem minmax(0, 1fr); }
+  .explorador { display: flex; border-right: 1px solid var(--azul-81-v2); border-bottom: 0; }
+  .explorador nav { padding: var(--esp-3) var(--esp-035); }
+  .explorador ul { display: block; }
+  .explorador__rotulo { margin-top: var(--esp-130); }
+  .explorador__nota, .explorador__paisagem { display: block; }
+  .conteudo { --pad-conteudo: var(--esp-4); }
 }
-@media (max-width: 30rem) {
-  .ambiente { padding-inline: .5rem; }
-  .janela { padding-inline: .25rem; padding-bottom: .25rem; }
-  .janela__subtitulo, .janela__rodape span:last-child { display: none; }
-  .barra-caminho { padding: .5rem; gap: .4rem; }
-  .conteudo { --pad-conteudo: 1rem; }
-  .janela__rodape { font-size: .75rem; }
+@media (min-width: 60.0625rem) {
+  .ambiente { padding-inline: var(--esp-5); }
+  .area-trabalho { grid-template-columns: 13rem minmax(0, 1fr); }
+  .explorador nav { padding-inline: var(--esp-060); }
+  .explorador a { gap: var(--esp-060); padding-inline: var(--esp-060); }
+  .conteudo { --pad-conteudo: clamp(var(--esp-125), 3vw, var(--esp-250)); }
 }
+@media (min-width: 80rem) { .ambiente { padding-top: var(--esp-075); } }
 </style>

@@ -143,12 +143,12 @@ function aoEditar(desafio) {
 </template>
 
 <style scoped>
-.desafios__cabecalho { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
+.desafios__cabecalho { display: flex; flex-wrap: wrap; gap: var(--esp-3); align-items: center; margin-bottom: var(--esp-4); }
 .desafios__cabecalho > div { flex: 1 1 12rem; min-width: 0; }
 .desafios__cabecalho .aero-icon { width: 4.5rem; height: 4.5rem; }
 .desafios__cabecalho h1 { margin: 0; }
-.desafios__progresso { display: grid; gap: .6rem; padding: 1rem 1.25rem; border: 1px solid #c5d8ac; border-radius: 4px; background: linear-gradient(#fafff1, #eef5df); font-size: .875rem; color: #4c6d2e; }
-.desafios__progresso progress { width: 100%; height: .9rem; accent-color: #6b9f2c; }
+.desafios__progresso { display: grid; gap: var(--esp-060); padding: var(--esp-3) var(--esp-125); border: 1px solid var(--verde-76-v2); border-radius: 4px; background: linear-gradient(var(--verde-97), var(--verde-92)); font-size: .875rem; color: var(--verde-30-v4); }
+.desafios__progresso progress { width: 100%; height: .9rem; accent-color: var(--verde-40-v2); }
 .desafios__progresso p { margin: 0; }
 .desafio__numero {
   margin-bottom: var(--esp-1);
@@ -161,14 +161,14 @@ function aoEditar(desafio) {
   margin-top: var(--esp-4);
   padding: var(--esp-3);
   border-radius: var(--raio);
-  background: linear-gradient(120deg, #f7fcff, #fff);
-  border: 1px solid #bed7e3;
-  box-shadow: inset 0 1px #fff, 0 2px 4px #2c65700b;
+  background: linear-gradient(120deg, var(--cinza-98), var(--branco));
+  border: 1px solid var(--azul-82-v3);
+  box-shadow: inset 0 1px var(--branco), 0 2px 4px var(--azul-31-a4);
 }
 
 .desafio__secao {
   margin-bottom: var(--esp-1);
-  color: #547e91;
+  color: var(--azul-45);
   font-size: var(--tam-p);
   font-weight: 700;
 }

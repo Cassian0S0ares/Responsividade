@@ -28,11 +28,12 @@ translúcida, botões com relevo, ícones vetoriais próprios e tipografia human
 As áreas de leitura permanecem opacas para preservar a legibilidade. A página inicial funciona
 como um explorador de assuntos; as seções têm atalhos para explicação, código e laboratórios.
 
-- `src/assets/main.css`: paleta, tipografia, controles e materiais dos laboratórios.
+- `src/assets/main.css`: tokens (paleta, espaçamentos), tipografia, controles e materiais dos laboratórios.
 - `src/App.vue`: moldura da janela, navegação responsiva e caminho da página.
 - `src/components/layout/AeroIcon.vue`: ícones SVG com gradientes e identificadores únicos.
 - `src/components/layout/AeroCena.vue`: composição de dispositivos feita em CSS, usando a foto já existente.
-- `public/aero/`: paisagem enviada como referência e favicon próprio.
+- `src/assets/mundo-aero.jpg`: paisagem enviada como referência (processada pelo Vite).
+- `public/aero/`: favicon próprio.
 
 A pesquisa visual partiu do [acervo e definição do CARI](https://cari.institute/aesthetics/frutiger-aero).
 Também foram consultadas as observações da [Falia sobre padrões recorrentes em sites gerados por IA](https://falia.co/en/insights/web-design/spot-ai-built-website/)
@@ -49,10 +50,13 @@ que fazem parte da referência Aero.
 
 ## Regras de responsividade seguidas
 
-- Os laboratórios mantêm os exemplos **mobile-first**. A moldura e a navegação usam media queries
-  em `rem` para adaptar a composição, recolhendo a barra lateral em telas de até 48rem.
-- Fontes e espaçamentos em `rem`; cores e espaçamentos como variáveis CSS no `:root`
-  (`src/assets/main.css`).
+- **Mobile-first** em todo o projeto: o CSS fora de media query é o do celular e todas as media
+  queries usam `min-width` em `rem`. A barra lateral aparece a partir de 48.0625rem (769px); os
+  limites somam 1px para que a largura exata (ex.: 768px) continue com o layout menor.
+- Fontes e espaçamentos em `rem`. **Cores e espaçamentos são variáveis CSS no `:root`**
+  (`src/assets/main.css`): tokens semânticos (`--cor-texto`, `--cor-destaque`...), a escala de
+  espaçamento `--esp-1` a `--esp-6` com ajustes finos (`--esp-035` = .35rem) e a paleta Aero
+  (`--azul-21`, `--verde-40`...; `-aNN` indica a opacidade). Os componentes só usam `var(--...)`.
 - Sem rolagem horizontal: imagens com `max-width: 100%`, código com `white-space: pre-wrap` e
   laboratórios limitados à largura disponível.
 - No celular, o menu vira o botão “Explorar guia” (`App.vue`).

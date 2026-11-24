@@ -17,14 +17,19 @@ onMounted(() => tela.iniciar())
 </template>
 
 <style scoped>
-.indicador { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; border-top: 1px solid #e0f8ff; background: linear-gradient(#f0fcffe8, #c4e5f1e8 48%, #a1cbdee8 49%, #d4edf6f0); box-shadow: 0 -1px 8px #125d7e35; pointer-events: none; }
-.indicador__interior { min-height: 2.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 80rem; margin: auto; padding: .2rem 1.5rem; color: #315f75; font-size: .8125rem; text-shadow: 0 1px #ffffffc7; }
-.indicador__marca, .indicador__medida { display: flex; align-items: center; gap: .5rem; }
+.indicador { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; border-top: 1px solid var(--azul-94); background: linear-gradient(var(--azul-97-a91), var(--azul-86-a91) 48%, var(--azul-75-a91) 49%, var(--azul-90-a94)); box-shadow: 0 -1px 8px var(--azul-28-a21); pointer-events: none; }
+.indicador__interior { min-height: 2.6rem; display: flex; align-items: center; justify-content: space-between; gap: var(--esp-2); max-width: 80rem; margin: auto; padding: var(--esp-020) var(--esp-075); color: var(--azul-33); font-size: .8125rem; text-shadow: 0 1px var(--branco-a78); }
+.indicador__marca, .indicador__medida { display: flex; align-items: center; gap: var(--esp-2); }
 .indicador__marca { flex-shrink: 0; font-weight: 600; }
-.indicador__medida { min-width: 0; flex-wrap: wrap; padding-left: 1rem; border-left: 1px solid #92bbcf; }
+.indicador__marca > span, .indicador__dica { display: none; }
+.indicador__medida { flex: 1; justify-content: flex-end; min-width: 0; flex-wrap: wrap; }
 .indicador .aero-icon { width: 1.75rem; height: 1.75rem; }
 .indicador__medida strong { font-family: var(--fonte-mono); font-weight: 400; }
 .indicador__medida > span { font-size: .75rem; }
-@media (max-width: 48rem) { .indicador__dica { display: none; } }
-@media (max-width: 30rem) { .indicador__marca > span { display: none; } .indicador__interior { padding-inline: .75rem; gap: .5rem; } .indicador__medida { flex: 1; justify-content: flex-end; border: 0; padding: 0; } }
+@media (min-width: 30.0625rem) {
+  .indicador__marca > span { display: inline; }
+  .indicador__interior { padding-inline: var(--esp-4); gap: var(--esp-3); }
+  .indicador__medida { flex: 0 1 auto; justify-content: normal; padding-left: var(--esp-3); border-left: 1px solid var(--azul-69); }
+}
+@media (min-width: 48.0625rem) { .indicador__dica { display: inline; } }
 </style>

@@ -32,11 +32,11 @@ onBeforeUnmount(() => clearTimeout(timeout))
 </template>
 
 <style scoped>
-.codigo { margin: 0 0 1rem; border: 1px solid #aec8d7; border-radius: 5px; background: var(--cor-codigo-fundo); color: var(--cor-codigo-texto); overflow: hidden; box-shadow: 0 2px 4px #2655700c; }
-.codigo__barra { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 2.5rem; padding: .3rem .8rem; border-bottom: 1px solid #b9d0de; background: linear-gradient(#f8fcff, #ddebf3); font-size: .8125rem; color: #476b7c; }
-.codigo__icone { margin-right: .3rem; font-family: var(--fonte-mono); color: #12709b; font-weight: 700; }
-.codigo__barra button { min-height: 2rem; padding: .15rem .6rem; border: 1px solid #9fbccc; border-radius: 3px; background: linear-gradient(#fff, #e9f2f7); box-shadow: inset 0 1px #fff; color: #335e75; font-size: .8125rem; }
-.codigo__barra button:hover { background: #fff; }
-pre { margin: 0; padding: 1.1rem 1.25rem; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.75; tab-size: 2; background: linear-gradient(90deg, #e9f2f6 0 3px, transparent 3px); }
+.codigo { margin: 0 0 var(--esp-3); border: 1px solid var(--azul-76-v2); border-radius: 5px; background: var(--cor-codigo-fundo); color: var(--cor-codigo-texto); overflow: hidden; box-shadow: 0 2px 4px var(--azul-29-a5-v2); }
+.codigo__barra { display: flex; align-items: center; justify-content: space-between; gap: var(--esp-2); min-height: 2.5rem; padding: var(--esp-030) var(--esp-080); border-bottom: 1px solid var(--azul-80); background: linear-gradient(var(--cinza-99), var(--azul-91-v2)); font-size: .8125rem; color: var(--azul-38-v4); }
+.codigo__icone { margin-right: var(--esp-030); font-family: var(--fonte-mono); color: var(--azul-34); font-weight: 700; }
+.codigo__barra button { min-height: 2rem; padding: var(--esp-015) var(--esp-060); border: 1px solid var(--azul-71-v4); border-radius: 3px; background: linear-gradient(var(--branco), var(--azul-94-v8)); box-shadow: inset 0 1px var(--branco); color: var(--azul-33-v2); font-size: .8125rem; }
+.codigo__barra button:hover { background: var(--branco); }
+pre { margin: 0; padding: var(--esp-110) var(--esp-125); white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.75; tab-size: 2; background: linear-gradient(90deg, var(--azul-94-v7) 0 3px, transparent 3px); }
 pre:focus-visible { outline-offset: -3px; }
 </style>

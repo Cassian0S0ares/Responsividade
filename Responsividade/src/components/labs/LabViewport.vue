@@ -76,7 +76,7 @@ const escala = computed(() => larguraTela.value / larguraLayout.value)
 }
 
 .lab__chave input {
-  margin-top: 0.4rem;
+  margin-top: var(--esp-040);
   flex-shrink: 0;
 }
 
@@ -92,18 +92,18 @@ const escala = computed(() => larguraTela.value / larguraLayout.value)
 .celular__tela {
   height: 26rem;
   overflow: hidden;
-  background: #fff;
+  background: var(--branco);
 }
 
 .mini-site {
   transform-origin: top left;
   container-type: inline-size;
-  color: #222;
+  color: var(--cinza-13);
 }
 
 /* Estilo base (celular) do mini-site */
 .mini-site__layout {
-  padding: 1rem;
+  padding: var(--esp-3);
   font-size: 1rem;
 }
 
@@ -111,7 +111,7 @@ const escala = computed(() => larguraTela.value / larguraLayout.value)
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: var(--esp-2);
 }
 
 .mini-site__nav {
@@ -119,19 +119,19 @@ const escala = computed(() => larguraTela.value / larguraLayout.value)
 }
 
 .mini-site__titulo {
-  margin: 1rem 0;
+  margin: var(--esp-3) 0;
   font-size: 1.5rem;
 }
 
 .mini-site__cards {
   display: grid;
-  gap: 0.75rem;
+  gap: var(--esp-075);
 }
 
 .mini-site__card {
-  padding: 2rem 1rem;
+  padding: var(--esp-5) var(--esp-3);
   border-radius: 0.5rem;
-  background: #f3d9b1;
+  background: var(--laranja-82);
 }
 
 /* "Desktop" do mini-site: só aparece quando o layout tem 37.5rem (600px) ou mais. */
@@ -142,7 +142,7 @@ const escala = computed(() => larguraTela.value / larguraLayout.value)
 
   .mini-site__nav {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--esp-4);
   }
 
   .mini-site__titulo {

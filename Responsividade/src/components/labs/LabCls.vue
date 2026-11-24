@@ -150,7 +150,7 @@ function trocarModo() {
 }
 
 .cls-lab__chave input {
-  margin-top: 0.4rem;
+  margin-top: var(--esp-040);
   flex-shrink: 0;
 }
 
