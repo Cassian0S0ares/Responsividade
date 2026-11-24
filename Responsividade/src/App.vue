@@ -1,28 +1,29 @@
 <script setup>
 import { computed, nextTick, ref, watch } from 'vue'
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { RouterLink, RouterView, START_LOCATION, useRoute, useRouter } from 'vue-router'
 import AppCabecalho from '@/components/layout/AppCabecalho.vue'
 import IndicadorBreakpoint from '@/components/layout/IndicadorBreakpoint.vue'
 import AeroIcon from '@/components/layout/AeroIcon.vue'
 import { secoes } from '@/data/secoes'
 
 const route = useRoute()
+const router = useRouter()
 const menuAberto = ref(false)
 const conteudo = ref(null)
 const atual = computed(() => secoes.find((s) => s.rota === route.path))
-// immediate para o titulo valer tambem na primeira carga; o foco so se move
-// em trocas de rota, senao roubaria o foco de quem acabou de abrir a pagina.
-let primeiraRota = true
-watch(() => route.path, async () => {
+// immediate para o titulo valer tambem na primeira carga.
+watch(() => route.path, () => {
   menuAberto.value = false
   document.title = `${atual.value?.titulo || 'Início'} · Guia Responsivo`
-  if (primeiraRota) {
-    primeiraRota = false
-    return
-  }
+}, { immediate: true })
+// O foco so se move em trocas de pagina feitas pela pessoa. A navegacao
+// inicial (vinda de START_LOCATION) roubaria o foco de quem acabou de abrir
+// o site e faria o Tab pular o "Pular para o conteudo" e o menu.
+router.afterEach(async (to, from, falha) => {
+  if (falha || from === START_LOCATION || to.path === from.path) return
   await nextTick()
   conteudo.value?.focus({ preventScroll: true })
-}, { immediate: true })
+})
 </script>
 
 <template>
