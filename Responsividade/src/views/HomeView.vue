@@ -66,7 +66,8 @@ const tela = useTelaStore()
 </template>
 
 <style scoped>
-.boas-vindas { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: .5rem; margin: -2.5rem -2.5rem 0; padding: 2.5rem 2rem 1.75rem 2.5rem; background: radial-gradient(ellipse at 95% 60%, #a7e5f77a, transparent 57%), linear-gradient(#effaff, #fff 90%); }
+/* Sangra ate a borda de .conteudo reaproveitando o padding declarado la. */
+.boas-vindas { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: .5rem; margin: calc(var(--pad-conteudo) * -1) calc(var(--pad-conteudo) * -1) 0; padding: 2.5rem 2rem 1.75rem 2.5rem; background: radial-gradient(ellipse at 95% 60%, #a7e5f77a, transparent 57%), linear-gradient(#effaff, #fff 90%); }
 .boas-vindas__saudacao { margin-bottom: .7rem; font-size: .9375rem; color: #4b7589; }
 .boas-vindas h1 { font-size: clamp(1.85rem, 2.65vw, 2.65rem); line-height: 1.17; margin-bottom: 1rem; }
 .boas-vindas h1 em { font-style: normal; color: #448315; }
@@ -111,7 +112,7 @@ const tela = useTelaStore()
 .inicio__fim p { font-size: .8125rem; color: #6b8591; margin: 0; }
 .inicio__fim strong { font-weight: 400; color: #456b7b; }
 @media (max-width: 70rem) {
-  .boas-vindas { margin: -1.5rem -1.5rem 0; padding: 2rem 1.5rem 1.5rem; }
+  .boas-vindas { padding: 2rem 1.5rem 1.5rem; }
   .inicio__explorar { gap: 1.25rem; grid-template-columns: minmax(0, 1fr) 12rem; }
   .quebra-desktop { display: none; }
 }
@@ -123,7 +124,7 @@ const tela = useTelaStore()
   .caderno { margin-top: .5rem; }
 }
 @media (max-width: 48rem) {
-  .boas-vindas { margin: -1.25rem -1.25rem 0; padding: 1.75rem 1.25rem 1rem; grid-template-columns: 1.1fr 1fr; }
+  .boas-vindas { padding: 1.75rem 1.25rem 1rem; grid-template-columns: 1.1fr 1fr; }
   .boas-vindas h1 { font-size: 1.85rem; }
   .boas-vindas .aero-cena { min-width: 0; }
 }
@@ -133,7 +134,7 @@ const tela = useTelaStore()
   .boas-vindas .aero-cena { margin: 1rem auto 0; max-width: 21rem; }
 }
 @media (max-width: 30rem) {
-  .boas-vindas { margin: -1rem -1rem 0; padding-inline: 1rem; }
+  .boas-vindas { padding-inline: 1rem; }
   .mesa-lateral { grid-template-columns: 1fr; gap: 1rem; }
   .caderno { margin: .5rem .5rem 0; }
   .trilha__lista a { gap: .6rem; }

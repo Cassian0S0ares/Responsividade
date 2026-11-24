@@ -98,7 +98,8 @@ watch(() => route.path, async () => {
 .explorador__nota .aero-icon { margin-bottom: .5rem; }
 .explorador__nota p { font-weight: 600; color: #467228; margin-bottom: .35rem; }
 .explorador__paisagem { height: 9rem; margin-top: auto; background: linear-gradient(#edf6fa, transparent 80%), url('/aero/mundo-aero.png') 78% 65% / auto 280px; opacity: .7; }
-.conteudo { min-width: 0; padding: clamp(1.25rem, 3vw, 2.5rem); background: #fff; }
+/* O padding vira variavel para que filhos possam sangrar ate a borda. */
+.conteudo { --pad-conteudo: clamp(1.25rem, 3vw, 2.5rem); min-width: 0; padding: var(--pad-conteudo); background: #fff; }
 .conteudo:focus { outline: none; }
 .janela__rodape { display: flex; justify-content: space-between; gap: .75rem; padding: .45rem 1rem; border-top: 1px solid #bdd5df; background: linear-gradient(#f4f9fc, #e3edf3); color: #537483; font-size: .75rem; }
 .ambiente__rodape { text-align: center; padding: 1rem; color: #fff; text-shadow: 0 1px 4px #234d20, 0 1px 8px #234d20; font-size: .8125rem; }
@@ -108,7 +109,7 @@ watch(() => route.path, async () => {
   .area-trabalho { grid-template-columns: 11rem minmax(0, 1fr); }
   .explorador nav { padding-inline: .35rem; }
   .explorador a { gap: .4rem; padding-inline: .4rem; }
-  .conteudo { padding: 1.5rem; }
+  .conteudo { --pad-conteudo: 1.5rem; }
 }
 @media (max-width: 48rem) {
   .area-trabalho { display: block; }
@@ -120,14 +121,14 @@ watch(() => route.path, async () => {
   .explorador__rotulo { margin-top: .5rem; }
   .menu-botao { display: inline-flex; min-height: 2.5rem; padding: .35rem .65rem; font-size: .875rem; }
   .endereco { gap: .4rem; min-height: 2.5rem; }
-  .conteudo { padding: 1.25rem; }
+  .conteudo { --pad-conteudo: 1.25rem; }
 }
 @media (max-width: 30rem) {
   .ambiente { padding-inline: .5rem; }
   .janela { padding-inline: .25rem; padding-bottom: .25rem; }
   .janela__subtitulo, .janela__rodape span:last-child { display: none; }
   .barra-caminho { padding: .5rem; gap: .4rem; }
-  .conteudo { padding: 1rem; }
+  .conteudo { --pad-conteudo: 1rem; }
   .janela__rodape { font-size: .75rem; }
 }
 </style>
