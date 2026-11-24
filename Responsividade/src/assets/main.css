@@ -67,6 +67,8 @@ input[type='range'] { accent-color: #087caa; min-height: 2rem; max-width: 100%; 
 .lab__chave code { overflow-wrap: anywhere; }
 .skip-link { position: fixed; top: -10rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: #fff; }
 .skip-link:focus { top: 1rem; }
+/* Texto que só o leitor de tela anuncia. */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* Materiais compartilhados sem alterar a geometria das demonstrações. */
 .conteudo .lab .flex-lab__container, .conteudo .lab .grid-lab__grade { background-color: #e7f3f6; background-image: linear-gradient(#94bdca26 1px, transparent 1px), linear-gradient(90deg, #94bdca26 1px, transparent 1px); background-size: 16px 16px; outline-color: #7ba6b8; }
 .conteudo .lab .flex-lab__item, .conteudo .lab .grid-lab__card { color: #174c64; border: 1px solid #74a8be; background: linear-gradient(#fff, #d6f1fc 48%, #b8dfe9 49%, #e2f4f8); box-shadow: inset 0 1px #fff, 0 2px 2px #27658220; }

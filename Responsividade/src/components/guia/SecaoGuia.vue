@@ -87,7 +87,6 @@ const total = secoes.length
 .secao__navegar a:last-child { text-align: right; padding-right: 2.6rem; }
 .secao__navegar small { display: block; font-size: .75rem; color: #688592; }
 .secao__navegar .aero-icon { position: absolute; right: 0; top: .3rem; width: 2rem; height: 2rem; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 38rem) {
   .secao__cabecalho { align-items: flex-start; gap: .75rem; }
   .secao__cabecalho > .aero-icon { width: 3rem; height: 3rem; }
