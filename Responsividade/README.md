@@ -5,7 +5,8 @@ Cada seção tem uma explicação curta, código comentado, laboratório interat
 pergunta-guia e as fontes consultadas.
 
 - **Site publicado:** https://cassian0s0ares.github.io/Responsividade/
-- **Dupla:** _(nomes)_
+- **Dupla:** Cassiano Luiz Brandes Soares e Guilherme Emanuel Gonçalves
+- **Repositório:** https://github.com/Cassian0S0ares/Responsividade
 
 ## Seções
 
