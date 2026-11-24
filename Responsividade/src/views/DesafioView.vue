@@ -13,7 +13,7 @@ const desafios = reactive([
     pergunta:
       'No laboratório Celular sem óculos, com a meta viewport DESLIGADA, com quantos px de largura o navegador desenha a página?',
     dica: 'Desligue a chave e leia a primeira frase abaixo dela.',
-    rota: '/por-que-importa',
+    rota: '/por-que-importa#laboratorio',
     laboratorio: 'Celular sem óculos',
     resposta: 980,
     unidade: 'px',
@@ -26,7 +26,7 @@ const desafios = reactive([
     pergunta:
       'Na Lupa de acessibilidade, com a fonte do navegador em 150%, quantos px vale um título de 1.5rem?',
     dica: 'Veja quanto vale 1rem nessa escala e multiplique.',
-    rota: '/unidades',
+    rota: '/unidades#laboratorio',
     laboratorio: 'Lupa de acessibilidade',
     resposta: 36,
     unidade: 'px',
@@ -39,7 +39,7 @@ const desafios = reactive([
     pergunta:
       'Na Calculadora de colunas, com mínimo de 14rem e gap de 1rem, qual é a menor largura do contêiner (em px) para aparecerem 3 colunas?',
     dica: 'Use a mesma conta da pergunta-guia 3, agora com 3 colunas e 2 gaps.',
-    rota: '/flexbox-e-grid',
+    rota: '/flexbox-e-grid#laboratorio',
     laboratorio: 'Calculadora de colunas',
     resposta: 704,
     unidade: 'px',
@@ -52,7 +52,7 @@ const desafios = reactive([
     pergunta:
       'No Medidor de pulo, com width e height LIGADOS na imagem, quantos px o texto pula quando a foto termina de carregar?',
     dica: 'Marque a chave do width e height, clique em "Carregar notícia" e espere 2 segundos.',
-    rota: '/imagens',
+    rota: '/imagens#laboratorio',
     laboratorio: 'Medidor de pulo (CLS)',
     resposta: 0,
     unidade: 'px',
@@ -65,7 +65,7 @@ const desafios = reactive([
     pergunta:
       'No laboratório :key ou caos?, na lista SEM :key, escreva algo no 2º animal e remova o primeiro. O texto aparece ao lado do animal que antes estava em qual posição da lista?',
     dica: 'Antes de remover, repare em quem é o 3º animal da lista.',
-    rota: '/boas-praticas',
+    rota: '/boas-praticas#laboratorio',
     laboratorio: ':key ou caos?',
     resposta: 3,
     unidade: 'posição',
@@ -78,6 +78,12 @@ const acertos = computed(() => desafios.filter((desafio) => desafio.resultado ==
 
 function conferir(desafio) {
   desafio.resultado = Number(desafio.tentativa) === desafio.resposta ? 'certo' : 'errado'
+}
+
+// Editar a resposta apaga o veredito anterior: senão o placar continuaria
+// contando um acerto que não corresponde mais ao que está no campo.
+function aoEditar(desafio) {
+  desafio.resultado = null
 }
 </script>
 
@@ -120,6 +126,7 @@ function conferir(desafio) {
             type="number"
             inputmode="numeric"
             required
+            @input="aoEditar(desafio)"
           />
           <button type="submit" class="botao">Conferir</button>
         </div>
