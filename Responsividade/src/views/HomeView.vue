@@ -27,7 +27,7 @@ const tela = useTelaStore()
 
     <div class="inicio__explorar">
       <section class="trilha" aria-labelledby="titulo-trilha">
-        <div class="trilha__cabecalho"><h2 id="titulo-trilha">Por onde vamos?</h2><span>6 paradas para descobrir</span></div>
+        <div class="trilha__cabecalho"><h2 id="titulo-trilha">Por onde vamos?</h2><span>{{ secoes.length }} paradas para descobrir</span></div>
         <ol class="trilha__lista">
           <li v-for="secao in secoes" :key="secao.rota">
             <RouterLink :to="secao.rota">

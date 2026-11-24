@@ -2,6 +2,7 @@
 import { computed, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
 import AeroIcon from '@/components/layout/AeroIcon.vue'
+import { secoes } from '@/data/secoes'
 
 // Perguntas que só se respondem usando os laboratórios do próprio guia.
 // Uma pergunta por seção (1 a 5).
@@ -84,7 +85,7 @@ function conferir(desafio) {
   <section class="desafios">
     <header class="desafios__cabecalho">
       <AeroIcon tipo="trofeu" />
-      <div><p class="desafio__numero">Explore o guia · Seção 6 de 6</p><h1>Suas descobertas, na prática.</h1></div>
+      <div><p class="desafio__numero">Explore o guia · Seção {{ secoes.length }} de {{ secoes.length }}</p><h1>Suas descobertas, na prática.</h1></div>
     </header>
     <p>
       Só dá para responder usando os laboratórios deste guia. Abra o laboratório indicado, teste,
