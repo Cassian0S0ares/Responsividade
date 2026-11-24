@@ -104,7 +104,9 @@ const fontes = [
       <p>
         Clique em "Carregar notícia". A imagem demora 2 segundos para chegar, como numa internet
         lenta. Faça primeiro <strong>sem</strong> width e height e depois <strong>com</strong>, e
-        compare quanto o texto pula.
+        compare quanto o texto pula. Repare no <em>skeleton</em> (o bloco cinza com brilho):
+        ele só aparece quando a imagem tem width e height, porque sem eles não existe espaço
+        reservado para desenhá-lo.
       </p>
       <LabCls />
 
@@ -125,8 +127,8 @@ const fontes = [
         botão errado.
       </p>
       <p>
-        Com <code>width="800" height="500"</code> no HTML, o navegador calcula a proporção
-        (800 ÷ 500 = 1,6) antes de baixar qualquer coisa. Com <code>height: auto</code>, ele já
+        Com <code>width="736" height="460"</code> no HTML, o navegador calcula a proporção
+        (736 ÷ 460 = 1,6) antes de baixar qualquer coisa. Com <code>height: auto</code>, ele já
         reserva a altura certa para a largura disponível, e o texto nasce no lugar final.
       </p>
       <p>

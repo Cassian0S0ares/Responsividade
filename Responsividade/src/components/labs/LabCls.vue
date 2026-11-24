@@ -1,8 +1,8 @@
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import paisagem from '@/assets/Image1.jpg'
 
 const ATRASO_MS = 2000
-const base = import.meta.env.BASE_URL
 
 const comDimensoes = ref(false)
 const src = ref('')
@@ -43,7 +43,7 @@ async function carregar() {
   medindo = true
   // Simula uma internet lenta: a imagem só "chega" depois de 2 segundos.
   setTimeout(() => {
-    src.value = `${base}img/obra-800.svg?rodada=${rodada.value}`
+    src.value = `${paisagem}?rodada=${rodada.value}`
   }, ATRASO_MS)
 }
 
@@ -67,7 +67,7 @@ function trocarModo() {
   <div class="lab cls-lab">
     <label class="cls-lab__chave">
       <input v-model="comDimensoes" type="checkbox" @change="trocarModo" />
-      Colocar <code>width="800" height="500"</code> na imagem
+      Colocar <code>width="736" height="460"</code> na imagem
     </label>
 
     <button type="button" class="botao" :disabled="estado === 'carregando'" @click="carregar">
@@ -75,17 +75,18 @@ function trocarModo() {
     </button>
 
     <div class="cls-lab__noticia">
-      <h4>Prefeitura inaugura nova praça</h4>
+      <h4>Primavera chega com céu limpo no interior</h4>
 
-      <!-- Com width e height: o navegador calcula a proporção (800/500) e reserva o espaço antes. -->
+      <!-- Com width e height: o navegador calcula a proporção (736/460) e reserva o espaço antes. -->
       <img
         v-if="comDimensoes"
         :key="`com-${rodada}`"
         :src="src || undefined"
-        width="800"
-        height="500"
+        width="736"
+        height="460"
         alt=""
         class="cls-lab__img cls-lab__img--reservada"
+        :class="{ skeleton: estado === 'carregando' }"
         @load="aoCarregar"
       />
       <!-- Sem width e height: o navegador não sabe o tamanho até a imagem chegar. -->
@@ -95,6 +96,7 @@ function trocarModo() {
         :src="src || undefined"
         alt=""
         class="cls-lab__img"
+        :class="{ skeleton: estado === 'carregando' }"
         @load="aoCarregar"
       />
 
@@ -149,7 +151,38 @@ function trocarModo() {
    deixamos explícito para a reserva funcionar antes mesmo do src existir. */
 .cls-lab__img--reservada {
   width: 100%;
-  aspect-ratio: 800 / 500;
+  aspect-ratio: 736 / 460;
+}
+
+/* Skeleton: um "esqueleto" com brilho passando enquanto a foto não chega.
+   Só aparece se houver espaço reservado: sem width/height a imagem tem 0px
+   de altura e o skeleton some junto (mais um motivo para usar width e height). */
+.skeleton {
+  border-radius: var(--raio);
+  background: linear-gradient(
+    90deg,
+    var(--cor-borda) 25%,
+    var(--cor-fundo) 50%,
+    var(--cor-borda) 75%
+  );
+  background-size: 200% 100%;
+  animation: brilho 1.2s ease-in-out infinite;
+}
+
+@keyframes brilho {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Quem pediu menos movimento no sistema vê o skeleton parado. */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
 }
 
 .cls-lab__texto {

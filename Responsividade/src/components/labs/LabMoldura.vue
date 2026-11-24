@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import paisagem from '@/assets/Image1.jpg'
 
 const base = import.meta.env.BASE_URL
 const ajustes = ['fill', 'contain', 'cover', 'none']
@@ -35,10 +36,10 @@ onBeforeUnmount(() => window.removeEventListener('resize', atualizarSrcset))
 
     <div class="moldura">
       <img
-        :src="`${base}img/obra-800.svg`"
-        width="800"
-        height="500"
-        alt="Desenho de uma casa laranja com um sol amarelo"
+        :src="paisagem"
+        width="736"
+        height="460"
+        alt="Colina verde sob um céu azul com nuvens"
         class="moldura__img"
         :style="{ objectFit }"
       />
