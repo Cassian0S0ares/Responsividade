@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 
 const UNIDADES = {
   rem: 'tamanho da fonte da raiz (<html>)',
@@ -14,6 +14,12 @@ const UNIDADES = {
 
 const valor = ref(1.5)
 const unidade = ref('rem')
+// O campo aceita vazio e negativo, mas width nao: nesses casos o navegador
+// ignoraria o estilo e a sonda continuaria com a medida antiga na tela.
+const valorValido = computed(() => {
+  const numero = Number(valor.value)
+  return Number.isFinite(numero) && numero >= 0 ? numero : 0
+})
 const resultado = ref(0)
 const larguraPai = ref(0)
 const fontePai = ref(0)
@@ -30,7 +36,7 @@ async function medir() {
   fontePai.value = parseFloat(getComputedStyle(pai.value).fontSize)
 }
 
-watch([valor, unidade], medir)
+watch([valorValido, unidade], medir)
 onMounted(() => {
   medir()
   window.addEventListener('resize', medir)
@@ -57,11 +63,11 @@ onBeforeUnmount(() => window.removeEventListener('resize', medir))
       <div
         ref="sonda"
         class="conversor__sonda"
-        :style="{ width: `${valor}${unidade}` }"
+        :style="{ width: `${valorValido}${unidade}` }"
         aria-hidden="true"
       >0</div>
       <p class="conversor__resultado">
-        <code>{{ valor }}{{ unidade }}</code> = <strong>{{ resultado.toFixed(1) }}px</strong>
+        <code>{{ valorValido }}{{ unidade }}</code> = <strong>{{ resultado.toFixed(1) }}px</strong>
       </p>
       <p class="conversor__explica">{{ unidade }} é relativo a: {{ UNIDADES[unidade] }}.</p>
       <p class="conversor__explica">
