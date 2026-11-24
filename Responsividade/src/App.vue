@@ -10,12 +10,19 @@ const route = useRoute()
 const menuAberto = ref(false)
 const conteudo = ref(null)
 const atual = computed(() => secoes.find((s) => s.rota === route.path))
+// immediate para o titulo valer tambem na primeira carga; o foco so se move
+// em trocas de rota, senao roubaria o foco de quem acabou de abrir a pagina.
+let primeiraRota = true
 watch(() => route.path, async () => {
   menuAberto.value = false
   document.title = `${atual.value?.titulo || 'Início'} · Guia Responsivo`
+  if (primeiraRota) {
+    primeiraRota = false
+    return
+  }
   await nextTick()
   conteudo.value?.focus({ preventScroll: true })
-})
+}, { immediate: true })
 </script>
 
 <template>
