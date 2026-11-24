@@ -3,9 +3,37 @@ import { reactive } from 'vue'
 import { RouterLink } from 'vue-router'
 
 // Perguntas que só se respondem usando os laboratórios do próprio guia.
+// Uma pergunta por seção (1 a 5).
 const desafios = reactive([
   {
+    id: 'viewport',
+    secao: 'Seção 1: Por que responsividade importa',
+    pergunta:
+      'No laboratório Celular sem óculos, com a meta viewport DESLIGADA, com quantos px de largura o navegador desenha a página?',
+    dica: 'Desligue a chave e leia a primeira frase abaixo dela.',
+    rota: '/por-que-importa',
+    laboratorio: 'Celular sem óculos',
+    resposta: 980,
+    unidade: 'px',
+    tentativa: null,
+    resultado: null,
+  },
+  {
+    id: 'lupa',
+    secao: 'Seção 2: Unidades CSS',
+    pergunta:
+      'Na Lupa de acessibilidade, com a fonte do navegador em 150%, quantos px vale um título de 1.5rem?',
+    dica: 'Veja quanto vale 1rem nessa escala e multiplique.',
+    rota: '/unidades',
+    laboratorio: 'Lupa de acessibilidade',
+    resposta: 36,
+    unidade: 'px',
+    tentativa: null,
+    resultado: null,
+  },
+  {
     id: 'grid',
+    secao: 'Seção 3: Flexbox e Grid',
     pergunta:
       'Na Calculadora de colunas, com mínimo de 14rem e gap de 1rem, qual é a menor largura do contêiner (em px) para aparecerem 3 colunas?',
     dica: 'Use a mesma conta da pergunta-guia 3, agora com 3 colunas e 2 gaps.',
@@ -17,14 +45,28 @@ const desafios = reactive([
     resultado: null,
   },
   {
-    id: 'lupa',
+    id: 'cls',
+    secao: 'Seção 4: Imagens responsivas',
     pergunta:
-      'Na Lupa de acessibilidade, com a fonte do navegador em 150%, quantos px vale um título de 1.5rem?',
-    dica: 'Veja quanto vale 1rem nessa escala e multiplique.',
-    rota: '/unidades',
-    laboratorio: 'Lupa de acessibilidade',
-    resposta: 36,
+      'No Medidor de pulo, com width e height LIGADOS na imagem, quantos px o texto pula quando a foto termina de carregar?',
+    dica: 'Marque a chave do width e height, clique em "Carregar notícia" e espere 2 segundos.',
+    rota: '/imagens',
+    laboratorio: 'Medidor de pulo (CLS)',
+    resposta: 0,
     unidade: 'px',
+    tentativa: null,
+    resultado: null,
+  },
+  {
+    id: 'key',
+    secao: 'Seção 5: Boas práticas em Vue',
+    pergunta:
+      'No laboratório :key ou caos?, na lista SEM :key, escreva algo no 2º animal e remova o primeiro. O texto aparece ao lado do animal que antes estava em qual posição da lista?',
+    dica: 'Antes de remover, repare em quem é o 3º animal da lista.',
+    rota: '/boas-praticas',
+    laboratorio: ':key ou caos?',
+    resposta: 3,
+    unidade: 'posição',
     tentativa: null,
     resultado: null,
   },
@@ -50,6 +92,7 @@ function conferir(desafio) {
       class="desafio"
       @submit.prevent="conferir(desafio)"
     >
+      <p class="desafio__secao">{{ desafio.secao }}</p>
       <h2>Pergunta {{ indice + 1 }}</h2>
       <p>{{ desafio.pergunta }}</p>
       <p class="desafio__lab">
@@ -94,6 +137,13 @@ function conferir(desafio) {
   padding: var(--esp-3);
   border-radius: var(--raio);
   background: var(--cor-superficie);
+}
+
+.desafio__secao {
+  margin-bottom: var(--esp-1);
+  color: var(--cor-texto-suave);
+  font-size: var(--tam-p);
+  font-weight: 700;
 }
 
 .desafio__lab {
