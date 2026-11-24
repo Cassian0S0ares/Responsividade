@@ -48,9 +48,9 @@ async function carregar() {
 }
 
 async function aoCarregar() {
+  estado.value = 'pronto' // tira o skeleton e mostra a foto
   await nextTick()
   pulo.value = texto.value.offsetTop - topoAntes
-  estado.value = 'pronto'
   setTimeout(() => {
     medindo = false
   }, 1000)
@@ -71,7 +71,7 @@ function trocarModo() {
     </label>
 
     <button type="button" class="botao" :disabled="estado === 'carregando'" @click="carregar">
-      {{ estado === 'carregando' ? 'Carregando (internet lenta)…' : 'Carregar notícia' }}
+      {{ estado === 'carregando' ? 'Carregando…' : 'Carregar notícia' }}
     </button>
 
     <div class="cls-lab__noticia">
@@ -89,14 +89,20 @@ function trocarModo() {
         :class="{ skeleton: estado === 'carregando' }"
         @load="aoCarregar"
       />
-      <!-- Sem width e height: o navegador não sabe o tamanho até a imagem chegar. -->
+      <!-- Sem width e height: o navegador não sabe o tamanho até a imagem chegar.
+           O skeleton fica com uma altura "chutada", diferente da foto real,
+           então quando a foto chega o texto pula do mesmo jeito. -->
+      <div
+        v-if="!comDimensoes && estado === 'carregando'"
+        class="skeleton cls-lab__skeleton-chutado"
+        aria-hidden="true"
+      ></div>
       <img
         v-else
         :key="`sem-${rodada}`"
         :src="src || undefined"
         alt=""
         class="cls-lab__img"
-        :class="{ skeleton: estado === 'carregando' }"
         @load="aoCarregar"
       />
 
@@ -154,9 +160,14 @@ function trocarModo() {
   aspect-ratio: 736 / 460;
 }
 
-/* Skeleton: um "esqueleto" com brilho passando enquanto a foto não chega.
-   Só aparece se houver espaço reservado: sem width/height a imagem tem 0px
-   de altura e o skeleton some junto (mais um motivo para usar width e height). */
+/* Sem width/height ninguém sabe a altura da foto: o skeleton usa um valor fixo,
+   menor que a foto real. Quando ela chega, o espaço muda e o texto pula. */
+.cls-lab__skeleton-chutado {
+  width: 100%;
+  height: 5rem;
+}
+
+/* Skeleton: um "esqueleto" com brilho passando enquanto a foto não chega. */
 .skeleton {
   border-radius: var(--raio);
   background: linear-gradient(

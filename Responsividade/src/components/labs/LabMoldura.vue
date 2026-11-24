@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import paisagem from '@/assets/Image1.jpg'
+// A mesma foto em três tamanhos de arquivo, para o srcset escolher.
+import paisagem from '@/assets/Image1.jpg' // 736px
+import paisagem480 from '@/assets/Image1-480.jpg'
+import paisagem320 from '@/assets/Image1-320.jpg'
 
-const base = import.meta.env.BASE_URL
+const opcoesSrcset = `${paisagem320} 320w, ${paisagem480} 480w, ${paisagem} 736w`
 const ajustes = ['fill', 'contain', 'cover', 'none']
 const objectFit = ref('cover')
 
@@ -15,7 +18,11 @@ const imagemSrcset = ref(null)
 function atualizarSrcset() {
   const img = imagemSrcset.value
   if (!img) return
-  arquivoEscolhido.value = img.currentSrc.split('/').pop()
+  // Descobre qual dos três arquivos o navegador baixou.
+  const atual = img.currentSrc
+  if (atual.includes(paisagem320)) arquivoEscolhido.value = 'versão de 320px'
+  else if (atual.includes(paisagem480)) arquivoEscolhido.value = 'versão de 480px'
+  else arquivoEscolhido.value = 'versão de 736px (original)'
   larguraExibida.value = Math.round(img.getBoundingClientRect().width)
   densidade.value = window.devicePixelRatio
 }
@@ -52,12 +59,12 @@ onBeforeUnmount(() => window.removeEventListener('resize', atualizarSrcset))
     <h4 class="moldura__titulo">srcset: qual arquivo veio?</h4>
     <img
       ref="imagemSrcset"
-      :src="`${base}img/obra-800.svg`"
-      :srcset="`${base}img/obra-400.svg 400w, ${base}img/obra-800.svg 800w, ${base}img/obra-1200.svg 1200w`"
+      :src="paisagem"
+      :srcset="opcoesSrcset"
       sizes="(min-width: 48rem) 40rem, 100vw"
-      width="800"
-      height="500"
-      alt="A mesma casa, servida em três tamanhos de arquivo"
+      width="736"
+      height="460"
+      alt="A mesma colina, servida em três tamanhos de arquivo"
       loading="lazy"
       @load="atualizarSrcset"
     />
@@ -65,7 +72,7 @@ onBeforeUnmount(() => window.removeEventListener('resize', atualizarSrcset))
       Arquivo escolhido: <strong>{{ arquivoEscolhido || '…' }}</strong>. A imagem aparece com
       {{ larguraExibida }}px numa tela de densidade {{ densidade }}x, então o navegador precisa
       de cerca de {{ Math.round(larguraExibida * densidade) }}px de imagem. Abra no celular e
-      compare (o número no canto da imagem mostra o arquivo).
+      compare.
     </p>
   </div>
 </template>

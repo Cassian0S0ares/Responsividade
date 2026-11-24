@@ -105,8 +105,8 @@ const fontes = [
         Clique em "Carregar notícia". A imagem demora 2 segundos para chegar, como numa internet
         lenta. Faça primeiro <strong>sem</strong> width e height e depois <strong>com</strong>, e
         compare quanto o texto pula. Repare no <em>skeleton</em> (o bloco cinza com brilho):
-        ele só aparece quando a imagem tem width e height, porque sem eles não existe espaço
-        reservado para desenhá-lo.
+        com width e height ele tem exatamente o tamanho da foto; sem eles, o tamanho é um
+        "chute" e o texto pula mesmo assim.
       </p>
       <LabCls />
 
