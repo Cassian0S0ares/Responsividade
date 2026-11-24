@@ -71,7 +71,7 @@ watch(() => route.path, async () => {
 
 <style scoped>
 .ambiente { padding: 0 2rem 3rem; }
-.janela { max-width: var(--largura-conteudo); margin: auto; padding: 0 .5rem .5rem; border: 1px solid #e6ffffd9; border-radius: 9px; background: linear-gradient(110deg, #c9f0ffa6, #e7fbffd4 45%, #91d1e9c4); box-shadow: 0 10px 45px #00375d66, inset 0 0 0 1px #3b93b750; backdrop-filter: blur(14px); }
+.janela { max-width: var(--largura-conteudo); margin: auto; padding: 0 .5rem .5rem; border: 1px solid #e6ffffd9; border-radius: 9px; background: linear-gradient(110deg, #c9f0ffa6, #e7fbffd4 45%, #91d1e9c4); box-shadow: 0 10px 45px #00375d66, inset 0 0 0 1px #3b93b750; }
 .janela__titulo { display: flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .25rem .5rem; font-size: .875rem; color: #143f56; text-shadow: 0 1px #fff; }
 .janela__titulo > .aero-icon { width: 1.5rem; height: 1.5rem; }
 .janela__titulo > span { min-width: 0; }

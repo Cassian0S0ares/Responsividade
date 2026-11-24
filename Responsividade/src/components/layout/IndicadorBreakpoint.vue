@@ -17,7 +17,7 @@ onMounted(() => tela.iniciar())
 </template>
 
 <style scoped>
-.indicador { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; border-top: 1px solid #e0f8ff; background: linear-gradient(#f0fcffe8, #c4e5f1e8 48%, #a1cbdee8 49%, #d4edf6f0); box-shadow: 0 -1px 8px #125d7e35; backdrop-filter: blur(12px); pointer-events: none; }
+.indicador { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; border-top: 1px solid #e0f8ff; background: linear-gradient(#f0fcffe8, #c4e5f1e8 48%, #a1cbdee8 49%, #d4edf6f0); box-shadow: 0 -1px 8px #125d7e35; pointer-events: none; }
 .indicador__interior { min-height: 2.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 80rem; margin: auto; padding: .2rem 1.5rem; color: #315f75; font-size: .8125rem; text-shadow: 0 1px #ffffffc7; }
 .indicador__marca, .indicador__medida { display: flex; align-items: center; gap: .5rem; }
 .indicador__medida { min-width: 0; flex-wrap: wrap; }
