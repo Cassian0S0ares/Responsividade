@@ -4,7 +4,7 @@ Guia interativo, feito em Vue 3, que ensina a criar páginas que funcionam em qu
 Cada seção tem uma explicação curta, código comentado, laboratório interativo, a resposta da
 pergunta-guia e as fontes consultadas.
 
-- **Site publicado:** _(colocar o link aqui)_
+- **Site publicado:** https://cassian0s0ares.github.io/Responsividade/
 - **Dupla:** _(nomes)_
 
 ## Seções
@@ -86,11 +86,19 @@ npm run dev      # desenvolvimento
 npm run build    # gera a pasta dist/
 ```
 
-## Publicação (Vercel)
+## Publicação (GitHub Pages)
 
-1. Importe o repositório na Vercel.
-2. Em **Root Directory**, escolha a pasta `Responsividade`.
-3. Framework: Vite. Build: `npm run build`. Output: `dist`.
+O workflow `.github/workflows/deploy.yml` (na raiz do repositório) faz o build e publica a cada
+push na `main`:
 
-O `vercel.json` redireciona todas as rotas para o `index.html`, para que recarregar a página
-em `/unidades` (por exemplo) não dê erro 404.
+1. Roda `npm ci` e `npm run build` dentro da pasta `Responsividade`, com
+   `BASE_PATH=/Responsividade/` (o site fica em `usuario.github.io/Responsividade/`, e o
+   `vite.config.js` usa essa variável como `base`).
+2. Copia `dist/index.html` para `dist/404.html`: o Pages não conhece as rotas do Vue Router, então
+   ao recarregar `/unidades` ele entrega o app pelo 404.html e o router mostra a página certa.
+3. Publica a pasta `dist`.
+
+No GitHub, em **Settings → Pages → Build and deployment → Source**, escolha **GitHub Actions**.
+
+O `vercel.json` continua no projeto caso prefiram publicar na Vercel (Root Directory:
+`Responsividade`); lá o site fica na raiz e não precisa de `BASE_PATH`.
