@@ -102,6 +102,3 @@ push na `main`:
 3. Publica a pasta `dist`.
 
 No GitHub, em **Settings → Pages → Build and deployment → Source**, escolha **GitHub Actions**.
-
-O `vercel.json` continua no projeto caso prefiram publicar na Vercel (Root Directory:
-`Responsividade`); lá o site fica na raiz e não precisa de `BASE_PATH`.
