@@ -1,22 +1,37 @@
 <script setup>
-import { useId } from 'vue'
-defineProps({ tipo: { type: String, default: 'globo' } })
+import { computed, useId } from 'vue'
+
+// Cada desenho usa no maximo dois gradientes; declarar os quatro em toda
+// instancia encheria a pagina de nos SVG que ninguem referencia.
+const GRADIENTES_POR_TIPO = {
+  globo: ['azul', 'verde'],
+  tela: ['azul', 'verde', 'prata'],
+  regua: ['ouro'],
+  grade: ['azul', 'verde', 'prata'],
+  imagem: ['azul', 'verde', 'prata'],
+  folha: ['verde'],
+  trofeu: ['ouro', 'prata'],
+}
+
+const props = defineProps({ tipo: { type: String, default: 'globo' } })
 const id = useId()
+const usados = computed(() => GRADIENTES_POR_TIPO[props.tipo] ?? [])
+const usa = (nome) => usados.value.includes(nome)
 </script>
 
 <template>
   <svg class="aero-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient :id="`${id}-azul`" x1="15" y1="8" x2="45" y2="58" gradientUnits="userSpaceOnUse">
+      <linearGradient v-if="usa('azul')" :id="`${id}-azul`" x1="15" y1="8" x2="45" y2="58" gradientUnits="userSpaceOnUse">
         <stop stop-color="#c6ffff" /><stop offset=".48" stop-color="#26bce4" /><stop offset=".5" stop-color="#0697d0" /><stop offset="1" stop-color="#005b9e" />
       </linearGradient>
-      <linearGradient :id="`${id}-verde`" x1="22" y1="12" x2="40" y2="54" gradientUnits="userSpaceOnUse">
+      <linearGradient v-if="usa('verde')" :id="`${id}-verde`" x1="22" y1="12" x2="40" y2="54" gradientUnits="userSpaceOnUse">
         <stop stop-color="#d6fc88" /><stop offset=".48" stop-color="#98d94b" /><stop offset="1" stop-color="#3c8b13" />
       </linearGradient>
-      <linearGradient :id="`${id}-prata`" x1="15" y1="10" x2="43" y2="59" gradientUnits="userSpaceOnUse">
+      <linearGradient v-if="usa('prata')" :id="`${id}-prata`" x1="15" y1="10" x2="43" y2="59" gradientUnits="userSpaceOnUse">
         <stop stop-color="white" /><stop offset=".5" stop-color="#e5f1f4" /><stop offset=".55" stop-color="#aec5d0" /><stop offset="1" stop-color="#f2fbff" />
       </linearGradient>
-      <linearGradient :id="`${id}-ouro`" x1="20" y1="10" x2="40" y2="55" gradientUnits="userSpaceOnUse">
+      <linearGradient v-if="usa('ouro')" :id="`${id}-ouro`" x1="20" y1="10" x2="40" y2="55" gradientUnits="userSpaceOnUse">
         <stop stop-color="#fff6a4" /><stop offset=".5" stop-color="#f9ce43" /><stop offset="1" stop-color="#d78315" />
       </linearGradient>
     </defs>
