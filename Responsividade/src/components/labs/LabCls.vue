@@ -19,6 +19,10 @@ const suportaCls =
 let observador
 let medindo = false
 let topoAntes = 0
+// Guardados para cancelar: trocar a chave no meio do carregamento não pode
+// deixar a foto antiga "chegar" e mostrar um resultado que ninguém pediu.
+let atrasoFoto
+let fimMedicao
 
 onMounted(() => {
   if (!suportaCls) return
@@ -30,7 +34,11 @@ onMounted(() => {
   })
   observador.observe({ type: 'layout-shift' })
 })
-onBeforeUnmount(() => observador?.disconnect())
+onBeforeUnmount(() => {
+  observador?.disconnect()
+  clearTimeout(atrasoFoto)
+  clearTimeout(fimMedicao)
+})
 
 async function carregar() {
   rodada.value++ // recria a <img> do zero
@@ -42,21 +50,25 @@ async function carregar() {
   topoAntes = texto.value.offsetTop
   medindo = true
   // Simula uma internet lenta: a imagem só "chega" depois de 2 segundos.
-  setTimeout(() => {
+  atrasoFoto = setTimeout(() => {
     src.value = `${paisagem}?rodada=${rodada.value}`
   }, ATRASO_MS)
 }
 
 async function aoCarregar() {
+  if (estado.value !== 'carregando') return
   estado.value = 'pronto' // tira o skeleton e mostra a foto
   await nextTick()
   pulo.value = texto.value.offsetTop - topoAntes
-  setTimeout(() => {
+  fimMedicao = setTimeout(() => {
     medindo = false
   }, 1000)
 }
 
 function trocarModo() {
+  clearTimeout(atrasoFoto)
+  clearTimeout(fimMedicao)
+  medindo = false
   estado.value = 'parado'
   src.value = ''
   rodada.value++
