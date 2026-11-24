@@ -18,8 +18,28 @@ pergunta-guia e as fontes consultadas.
 | 5 | Boas práticas em Vue | `/boas-praticas` | :key ou caos? (lista com e sem key, dados de API + Pinia) |
 | 6 | Desafio | `/desafio` | Perguntas que só se respondem usando os laboratórios |
 
-Em todas as páginas há um **indicador fixo** no canto com a largura da janela e o breakpoint
+Em todas as páginas há uma **barra de status fixa** com a largura da janela e o breakpoint
 ativo.
+
+## Direção visual: Frutiger Aero
+
+A interface combina natureza e tecnologia: uma paisagem fornecida como referência, uma janela
+translúcida, botões com relevo, ícones vetoriais próprios e tipografia humanista (Segoe UI).
+As áreas de leitura permanecem opacas para preservar a legibilidade. A página inicial funciona
+como um explorador de assuntos; as seções têm atalhos para explicação, código e laboratórios.
+
+- `src/assets/main.css`: paleta, tipografia, controles e materiais dos laboratórios.
+- `src/App.vue`: moldura da janela, navegação responsiva e caminho da página.
+- `src/components/layout/AeroIcon.vue`: ícones SVG com gradientes e identificadores únicos.
+- `src/components/layout/AeroCena.vue`: composição de dispositivos feita em CSS, usando a foto já existente.
+- `public/aero/`: paisagem enviada como referência e favicon próprio.
+
+A pesquisa visual partiu do [acervo e definição do CARI](https://cari.institute/aesthetics/frutiger-aero).
+Também foram consultadas as observações da [Falia sobre padrões recorrentes em sites gerados por IA](https://falia.co/en/insights/web-design/spot-ai-built-website/)
+e a análise do [Web Almanac](https://almanac.httparchive.org/en/2025/generative-ai).
+Esses padrões não comprovam autoria por IA. A decisão aqui foi evitar cartões repetitivos,
+ornamentos sem função e composição genérica de landing page, mantendo o brilho e os gradientes
+que fazem parte da referência Aero.
 
 ## Tecnologias
 
@@ -29,13 +49,14 @@ ativo.
 
 ## Regras de responsividade seguidas
 
-- CSS **mobile-first**: o estilo fora de media query é o do celular; as media queries usam
-  apenas `min-width` (40rem, 48rem e 64rem).
+- Os laboratórios mantêm os exemplos **mobile-first**. A moldura e a navegação usam media queries
+  em `rem` para adaptar a composição, recolhendo a barra lateral em telas de até 48rem.
 - Fontes e espaçamentos em `rem`; cores e espaçamentos como variáveis CSS no `:root`
   (`src/assets/main.css`).
 - Sem rolagem horizontal: imagens com `max-width: 100%`, código com `white-space: pre-wrap` e
   laboratórios limitados à largura disponível.
-- No celular, o menu vira um botão (`AppCabecalho.vue`).
+- No celular, o menu vira o botão “Explorar guia” (`App.vue`).
+- Há link para pular ao conteúdo, indicação de foco, respeito a movimento reduzido e campos rotulados.
 
 ## Estrutura
 
@@ -45,7 +66,7 @@ src/
 ├── components/
 │   ├── guia/            SecaoGuia (molde das seções) e BlocoCodigo
 │   ├── labs/            um componente por laboratório
-│   └── layout/          cabeçalho e indicador de breakpoint
+│   └── layout/          cabeçalho, ícones Aero, cena e indicador de breakpoint
 ├── data/secoes.js       lista das seções (menu e página inicial)
 ├── router/index.js      rotas
 ├── stores/              Pinia

@@ -1,151 +1,85 @@
-/*
-  Design tokens: todas as cores e espaçamentos do site moram aqui.
-  Para mudar o visual, troque os valores destas variáveis.
-*/
+/* Frutiger Aero: azul aquático, superfícies esmaltadas e tipografia humanista. */
 :root {
-  --cor-fundo: #f4f1ea;
-  --cor-superficie: #ffffff;
-  --cor-texto: #1d1d1b;
-  --cor-texto-suave: #55534d;
-  --cor-destaque: #c2410c;
-  --cor-destaque-texto: #ffffff;
-  --cor-borda: #d6d1c4;
-  --cor-codigo-fundo: #1f2328;
-  --cor-codigo-texto: #e6edf3;
-  --cor-ok: #15803d;
-  --cor-erro: #b91c1c;
-
-  --fonte-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --fonte-mono: ui-monospace, Consolas, 'Courier New', monospace;
-
-  --tam-p: 0.875rem;
+  color-scheme: light;
+  --cor-fundo: #e6f4f7;
+  --cor-superficie: #fff;
+  --cor-texto: #173e52;
+  --cor-texto-suave: #4b6978;
+  --cor-destaque: #076691;
+  --cor-destaque-texto: #fff;
+  --cor-borda: #a9cbd7;
+  --cor-codigo-fundo: #f3f8fb;
+  --cor-codigo-texto: #174c68;
+  --cor-ok: #326d13;
+  --cor-erro: #a72d25;
+  --fonte-base: 'Segoe UI', 'Trebuchet MS', sans-serif;
+  --fonte-mono: Consolas, 'Liberation Mono', monospace;
+  --tam-p: .875rem;
   --tam-m: 1rem;
   --tam-g: 1.25rem;
   --tam-gg: 1.75rem;
   --tam-ggg: 2.25rem;
-
-  --esp-1: 0.25rem;
-  --esp-2: 0.5rem;
+  --esp-1: .25rem;
+  --esp-2: .5rem;
   --esp-3: 1rem;
   --esp-4: 1.5rem;
   --esp-5: 2rem;
   --esp-6: 3rem;
-
-  --raio: 0.5rem;
-  --largura-conteudo: 60rem;
+  --raio: .375rem;
+  --largura-conteudo: 76rem;
+  --brilho: inset 0 1px 0 #fff, 0 1px 3px #235d7426;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Mobile-first: tudo fora de media query é o estilo do celular. */
-body {
-  margin: 0;
-  font-family: var(--fonte-base);
-  font-size: var(--tam-m);
-  line-height: 1.6;
-  color: var(--cor-texto);
-  background: var(--cor-fundo);
-  overflow-wrap: break-word;
-}
-
-img,
-svg,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-h1,
-h2,
-h3 {
-  line-height: 1.2;
-  margin: 0 0 var(--esp-3);
-}
-
-h1 {
-  font-size: var(--tam-gg);
-}
-
-h2 {
-  font-size: var(--tam-g);
-}
-
-p {
-  margin: 0 0 var(--esp-3);
-}
-
-a {
-  color: var(--cor-destaque);
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-:focus-visible {
-  outline: 0.1875rem solid var(--cor-destaque);
-  outline-offset: 0.125rem;
-}
-
-code {
-  font-family: var(--fonte-mono);
-  font-size: 0.9em;
-}
-
-/* Botão padrão reaproveitado pelos laboratórios */
-.botao {
-  padding: var(--esp-2) var(--esp-3);
-  border: 0.0625rem solid var(--cor-destaque);
-  border-radius: var(--raio);
-  background: var(--cor-destaque);
-  color: var(--cor-destaque-texto);
-}
-
-.botao--secundario {
-  background: transparent;
-  color: var(--cor-destaque);
-}
-
-/* Caixa padrão dos laboratórios */
-.lab {
-  padding: var(--esp-3);
-  border: 0.0625rem dashed var(--cor-borda);
-  border-radius: var(--raio);
-  background: var(--cor-superficie);
-}
-
-.lab__info {
-  margin-top: var(--esp-3);
-  font-size: var(--tam-p);
-}
-
-.lab__controle {
-  display: grid;
-  gap: var(--esp-1);
-  margin-bottom: var(--esp-3);
-}
-
-.lab__controle input[type='range'] {
-  width: 100%;
-}
-
-@media (min-width: 48rem) {
-  .lab {
-    padding: var(--esp-4);
-  }
-
-  h1 {
-    font-size: var(--tam-ggg);
-  }
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { min-width: 320px; scroll-padding-top: 1.5rem; }
+body { margin: 0; font-family: var(--fonte-base); font-size: var(--tam-m); line-height: 1.6; color: var(--cor-texto); background: #38a1cf; overflow-wrap: break-word; }
+body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: linear-gradient(#0072c51a, #00522b12), url('/aero/mundo-aero.png') center / cover; pointer-events: none; }
+button, input, select, textarea { font: inherit; }
+button, select, input[type='checkbox'], input[type='radio'], input[type='range'] { cursor: pointer; }
+button { color: inherit; }
+button:disabled { cursor: wait; opacity: .6; }
+img, svg, video { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 0 0 1rem; }
+h1 { font-size: clamp(1.9rem, 3.2vw, 2.75rem); font-weight: 400; letter-spacing: -.035em; color: #104b6b; }
+h2 { font-size: 1.4rem; font-weight: 600; color: #135777; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+h4 { font-size: 1rem; }
+p { margin: 0 0 1rem; }
+a { color: var(--cor-destaque); text-underline-offset: .2em; }
+a:hover { color: #174f12; }
+::selection { color: #fff; background: #0879af; }
+:focus-visible { outline: 3px solid #056baf; outline-offset: 3px; }
+code { font-family: var(--fonte-mono); font-size: .9em; overflow-wrap: anywhere; }
+p code, li code, dd code { color: #155d7b; background: #e9f5f8; padding: .08em .25em; border-radius: 3px; }
+input:not([type='range']):not([type='checkbox']):not([type='radio']), select, textarea { min-height: 2.75rem; min-width: 0; max-width: 100%; border: 1px solid #87aab9; border-radius: 4px; background-color: #fff; box-shadow: inset 0 2px 3px #194d6714, 0 1px 0 #fff; color: #173e52; padding: .5rem .7rem; }
+select { appearance: none; padding-right: 2.2rem !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m2 2 4 4 4-4' fill='none' stroke='%232b607a' stroke-width='2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; }
+input[type='checkbox'], input[type='radio'] { width: 1.1rem; height: 1.1rem; accent-color: #187ca7; }
+input[type='range'] { accent-color: #087caa; min-height: 2rem; max-width: 100%; }
+.botao { display: inline-flex; justify-content: center; align-items: center; gap: .5rem; min-height: 2.75rem; padding: .55rem 1.25rem; border: 1px solid #246a14; border-radius: 5px; background: linear-gradient(#a2d760 0%, #74b938 48%, #4e9820 49%, #65ac2d 100%); box-shadow: inset 0 1px 1px #ecffcc, inset 0 -1px 1px #347318, 0 2px 3px #234e4b26; color: #fff; font-weight: 600; text-shadow: 0 1px 2px #285a17; text-decoration: none; transition: filter .15s, box-shadow .15s; }
+.botao:hover { color: #fff; filter: brightness(1.07); }
+.botao:active { box-shadow: inset 0 2px 5px #174d3355; }
+.botao--secundario { color: #235976; text-shadow: 0 1px #fff; border-color: #8fb4c5; background: linear-gradient(#fff, #edf7fa 48%, #d8eaf1 49%, #e7f5f9); box-shadow: var(--brilho); }
+.botao--secundario:hover { color: #104b6b; }
+.lab { min-width: 0; padding: clamp(1rem, 2vw, 1.5rem); border: 1px solid #95bacb; border-top: 4px solid #68b6d4; border-radius: 5px; background: linear-gradient(120deg, #f8fdff, #edf6fa); box-shadow: inset 0 1px #fff, 0 2px 5px #14496a12; }
+.lab__info { margin-top: 1rem; font-size: var(--tam-p); color: var(--cor-texto-suave); }
+.lab__controle { display: grid; gap: .4rem; min-width: 0; margin-bottom: 1rem; font-size: .9375rem; }
+.lab__controle input[type='range'] { width: 100%; }
+.lab__controle > select { width: 100%; }
+.lab__chave code { overflow-wrap: anywhere; }
+.skip-link { position: fixed; top: -10rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: #fff; }
+.skip-link:focus { top: 1rem; }
+/* Materiais compartilhados sem alterar a geometria das demonstrações. */
+.conteudo .lab .flex-lab__container, .conteudo .lab .grid-lab__grade { background-color: #e7f3f6; background-image: linear-gradient(#94bdca26 1px, transparent 1px), linear-gradient(90deg, #94bdca26 1px, transparent 1px); background-size: 16px 16px; outline-color: #7ba6b8; }
+.conteudo .lab .flex-lab__item, .conteudo .lab .grid-lab__card { color: #174c64; border: 1px solid #74a8be; background: linear-gradient(#fff, #d6f1fc 48%, #b8dfe9 49%, #e2f4f8); box-shadow: inset 0 1px #fff, 0 2px 2px #27658220; }
+.conteudo .lab .grid-lab__minimo { border-color: #407e32; }
+.conteudo .lab .grid-lab__aviso { background: #eff5db; border-color: #80a93e; color: #476327; }
+.conteudo .lab .conversor__pai { background: #fff; }
+.conteudo .lab .conversor__resultado strong { color: #2e711f; }
+.conteudo .lab .celular { border: 1px solid #6f8c9d; background: linear-gradient(120deg, #fff, #bad1dc 40%, #f1faff 60%, #8babbc); box-shadow: 0 7px 12px #28577425, inset 0 1px #fff; }
+.conteudo .lab .celular__tela { border: 1px solid #7091a4; }
+.conteudo .lab .key-lab__lista { background: #fff; border-radius: 4px; box-shadow: 0 1px 4px #173f5315; }
+.conteudo .lab .animal__remover { min-width: 2.75rem; min-height: 2.75rem; background: linear-gradient(#fff, #dbeaf0); color: #8c3d35; font-size: 1.25rem; }
+.conteudo .lab .moldura { border-color: #5496af; background: repeating-conic-gradient(#ecf4f6 0% 25%, #fff 0% 50%) 50% / 20px 20px; }
+.conteudo .unidades .unidades__item { border-bottom: 1px solid #c6dce5; border-radius: 0; background: linear-gradient(90deg, #f0f8fb, #fff); }
+.conteudo .unidades .unidades__item dt { margin-bottom: .25rem; }
+.conteudo .unidades .unidades__item dt > code { display: inline-block; min-width: 4.5rem; color: #086391; font-size: 1.2rem; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }

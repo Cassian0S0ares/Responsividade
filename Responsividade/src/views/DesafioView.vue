@@ -1,6 +1,7 @@
 <script setup>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
+import AeroIcon from '@/components/layout/AeroIcon.vue'
 
 // Perguntas que só se respondem usando os laboratórios do próprio guia.
 // Uma pergunta por seção (1 a 5).
@@ -72,19 +73,29 @@ const desafios = reactive([
   },
 ])
 
+const acertos = computed(() => desafios.filter((desafio) => desafio.resultado === 'certo').length)
+
 function conferir(desafio) {
   desafio.resultado = Number(desafio.tentativa) === desafio.resposta ? 'certo' : 'errado'
 }
 </script>
 
 <template>
-  <section>
-    <p class="desafio__numero">Seção 6</p>
-    <h1>Desafio</h1>
+  <section class="desafios">
+    <header class="desafios__cabecalho">
+      <AeroIcon tipo="trofeu" />
+      <div><p class="desafio__numero">Explore o guia · Seção 6 de 6</p><h1>Suas descobertas, na prática.</h1></div>
+    </header>
     <p>
       Só dá para responder usando os laboratórios deste guia. Abra o laboratório indicado, teste,
       e volte com a resposta.
     </p>
+
+    <div class="desafios__progresso">
+      <label for="progresso-desafio">{{ acertos }} de {{ desafios.length }} descobertas conferidas</label>
+      <progress id="progresso-desafio" :value="acertos" :max="desafios.length"></progress>
+      <p v-if="acertos === desafios.length" role="status">Você completou o percurso. Agora leve essas ideias para a sua próxima página!</p>
+    </div>
 
     <form
       v-for="(desafio, indice) in desafios"
@@ -113,10 +124,10 @@ function conferir(desafio) {
         </div>
       </div>
 
-      <p v-if="desafio.resultado === 'certo'" class="desafio__feedback desafio__feedback--certo">
+      <p v-if="desafio.resultado === 'certo'" role="status" class="desafio__feedback desafio__feedback--certo">
         Aprovado! Resposta certa.
       </p>
-      <p v-else-if="desafio.resultado === 'errado'" class="desafio__feedback desafio__feedback--errado">
+      <p v-else-if="desafio.resultado === 'errado'" role="status" class="desafio__feedback desafio__feedback--errado">
         Ainda não. Dica: {{ desafio.dica }}
       </p>
     </form>
@@ -124,11 +135,17 @@ function conferir(desafio) {
 </template>
 
 <style scoped>
+.desafios__cabecalho { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
+.desafios__cabecalho > div { flex: 1 1 12rem; min-width: 0; }
+.desafios__cabecalho .aero-icon { width: 4.5rem; height: 4.5rem; }
+.desafios__cabecalho h1 { margin: 0; }
+.desafios__progresso { display: grid; gap: .6rem; padding: 1rem 1.25rem; border: 1px solid #c5d8ac; border-radius: 4px; background: linear-gradient(#fafff1, #eef5df); font-size: .875rem; color: #4c6d2e; }
+.desafios__progresso progress { width: 100%; height: .9rem; accent-color: #6b9f2c; }
+.desafios__progresso p { margin: 0; }
 .desafio__numero {
   margin-bottom: var(--esp-1);
   color: var(--cor-destaque);
   font-weight: 700;
-  text-transform: uppercase;
   font-size: var(--tam-p);
 }
 
@@ -136,12 +153,14 @@ function conferir(desafio) {
   margin-top: var(--esp-4);
   padding: var(--esp-3);
   border-radius: var(--raio);
-  background: var(--cor-superficie);
+  background: linear-gradient(120deg, #f7fcff, #fff);
+  border: 1px solid #bed7e3;
+  box-shadow: inset 0 1px #fff, 0 2px 4px #2c65700b;
 }
 
 .desafio__secao {
   margin-bottom: var(--esp-1);
-  color: var(--cor-texto-suave);
+  color: #547e91;
   font-size: var(--tam-p);
   font-weight: 700;
 }

@@ -15,7 +15,8 @@ const router = createRouter({
     { path: '/desafio', name: 'desafio', component: () => import('@/views/DesafioView.vue') },
     { path: '/:caminho(.*)*', redirect: '/' },
   ],
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.hash) return { el: to.hash }
     return { top: 0 }
   },
 })

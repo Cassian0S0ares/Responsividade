@@ -1,137 +1,30 @@
 <script setup>
-import { ref, watch } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
-import { secoes } from '@/data/secoes'
-
-const menuAberto = ref(false)
-const route = useRoute()
-
-// Fecha o menu do celular sempre que a pessoa troca de página.
-watch(
-  () => route.fullPath,
-  () => {
-    menuAberto.value = false
-  },
-)
+import { RouterLink } from 'vue-router'
+import AeroIcon from './AeroIcon.vue'
 </script>
 
 <template>
   <header class="cabecalho">
-    <div class="cabecalho__barra">
-      <RouterLink to="/" class="cabecalho__marca">Guia Responsivo</RouterLink>
-      <button
-        class="cabecalho__botao"
-        type="button"
-        aria-controls="menu-principal"
-        :aria-expanded="menuAberto"
-        @click="menuAberto = !menuAberto"
-      >
-        {{ menuAberto ? 'Fechar' : 'Menu' }}
-      </button>
-    </div>
-
-    <nav
-      id="menu-principal"
-      class="cabecalho__menu"
-      :class="{ 'cabecalho__menu--aberto': menuAberto }"
-      aria-label="Seções do guia"
-    >
-      <ul>
-        <li v-for="secao in secoes" :key="secao.rota">
-          <RouterLink :to="secao.rota">{{ secao.numero }}. {{ secao.titulo }}</RouterLink>
-        </li>
-      </ul>
-    </nav>
+    <RouterLink to="/" class="cabecalho__marca" aria-label="Guia Responsivo — início">
+      <AeroIcon tipo="globo" />
+      <span>Guia<span class="cabecalho__leve">Responsivo</span><small>Um espaço para aprender e experimentar.</small></span>
+    </RouterLink>
+    <p class="cabecalho__recado">A web se adapta.<br /><strong>Você descobre como.</strong></p>
   </header>
 </template>
 
 <style scoped>
-/* Celular: menu escondido atrás de um botão. */
-.cabecalho {
-  background: var(--cor-superficie);
-  border-bottom: 0.0625rem solid var(--cor-borda);
-}
-
-.cabecalho__barra {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--esp-3);
-  padding: var(--esp-3);
-}
-
-.cabecalho__marca {
-  font-weight: 700;
-  font-size: var(--tam-g);
-  color: var(--cor-texto);
-  text-decoration: none;
-}
-
-.cabecalho__botao {
-  padding: var(--esp-2) var(--esp-3);
-  border: 0.0625rem solid var(--cor-texto);
-  border-radius: var(--raio);
-  background: transparent;
-  color: var(--cor-texto);
-}
-
-.cabecalho__menu {
-  display: none;
-}
-
-.cabecalho__menu--aberto {
-  display: block;
-}
-
-.cabecalho__menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0 var(--esp-3) var(--esp-3);
-}
-
-.cabecalho__menu a {
-  display: block;
-  padding: var(--esp-2) 0;
-  color: var(--cor-texto);
-  text-decoration: none;
-}
-
-.cabecalho__menu a.router-link-active {
-  color: var(--cor-destaque);
-  font-weight: 700;
-}
-
-/* Desktop: o botão some e os links ficam visíveis lado a lado. */
-@media (min-width: 64rem) {
-  .cabecalho {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--esp-3);
-    padding: 0 var(--esp-3);
-  }
-
-  .cabecalho__barra {
-    padding: var(--esp-3) 0;
-  }
-
-  .cabecalho__botao {
-    display: none;
-  }
-
-  .cabecalho__menu {
-    display: block;
-  }
-
-  .cabecalho__menu ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--esp-3);
-    padding: 0;
-  }
-
-  .cabecalho__menu a {
-    font-size: var(--tam-p);
-  }
+.cabecalho { display: flex; justify-content: space-between; align-items: center; gap: 1rem; max-width: var(--largura-conteudo); margin: auto; padding: 1.5rem .5rem 1.25rem; }
+.cabecalho__marca { display: flex; gap: .65rem; align-items: center; text-decoration: none; color: #fff; font-size: 1.8rem; font-weight: 650; letter-spacing: -.05em; line-height: 1.2; text-shadow: 0 2px 4px #004679; }
+.cabecalho__marca .aero-icon { width: 3.8rem; height: 3.8rem; filter: drop-shadow(0 2px 3px #00487980); }
+.cabecalho__leve { font-weight: 350; }
+.cabecalho__marca, .cabecalho__marca > span { min-width: 0; }
+.cabecalho__marca small { display: block; font-size: .8125rem; font-weight: 400; letter-spacing: .01em; margin-top: .3rem; }
+.cabecalho__recado { margin: 0; color: #fff; font-size: .875rem; text-align: right; text-shadow: 0 1px 4px #003f70, 0 0 12px #00609a; }
+@media (max-width: 40rem) {
+  .cabecalho { padding: 1rem .5rem; }
+  .cabecalho__marca { font-size: 1.5rem; }
+  .cabecalho__marca .aero-icon { width: 3rem; height: 3rem; }
+  .cabecalho__recado { display: none; }
 }
 </style>
