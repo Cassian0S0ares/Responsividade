@@ -12,7 +12,7 @@ const objectFit = ref('cover')
 // srcset: qual arquivo o navegador escolheu?
 const arquivoEscolhido = ref('')
 const larguraExibida = ref(0)
-const densidade = ref(window.devicePixelRatio)
+const densidade = ref(1)
 const imagemSrcset = ref(null)
 
 function atualizarSrcset() {
@@ -24,7 +24,8 @@ function atualizarSrcset() {
   else if (atual.includes(paisagem480)) arquivoEscolhido.value = 'versão de 480px'
   else arquivoEscolhido.value = 'versão de 736px (original)'
   larguraExibida.value = Math.round(img.getBoundingClientRect().width)
-  densidade.value = window.devicePixelRatio
+  // O navegador às vezes devolve 1.0000000149...; duas casas bastam (ex.: 2.63).
+  densidade.value = Math.round(window.devicePixelRatio * 100) / 100
 }
 
 onMounted(() => window.addEventListener('resize', atualizarSrcset))
