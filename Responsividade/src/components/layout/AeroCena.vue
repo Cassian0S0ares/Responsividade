@@ -1,6 +1,8 @@
 <script setup>
 import AeroIcon from './AeroIcon.vue'
-import paisagem from '@/assets/Image1.jpg'
+// A cena e decorativa e nenhuma das telas passa de ~240px de largura,
+// entao a variante menor da foto ja cobre o necessario.
+import paisagem from '@/assets/Image1-320.jpg'
 </script>
 
 <template>
@@ -9,11 +11,11 @@ import paisagem from '@/assets/Image1.jpg'
     <div class="bolha bolha--um"></div><div class="bolha bolha--dois"></div><div class="bolha bolha--tres"></div>
     <AeroIcon tipo="globo" class="cena-globo" />
     <div class="monitor">
-      <div class="monitor__corpo"><div class="monitor__tela"><img :src="paisagem" alt="" /><div class="mini-janela"><div></div><span></span><span></span><span></span></div></div><i></i></div>
+      <div class="monitor__corpo"><div class="monitor__tela"><img :src="paisagem" alt="" loading="lazy" decoding="async" /><div class="mini-janela"><div></div><span></span><span></span><span></span></div></div><i></i></div>
       <div class="monitor__pe"></div><div class="monitor__base"></div>
     </div>
-    <div class="tablet"><img :src="paisagem" alt="" /><div class="tablet__linhas"></div></div>
-    <div class="telefone"><div class="telefone__som"></div><img :src="paisagem" alt="" /><div class="telefone__botao"></div></div>
+    <div class="tablet"><img :src="paisagem" alt="" loading="lazy" decoding="async" /><div class="tablet__linhas"></div></div>
+    <div class="telefone"><div class="telefone__som"></div><img :src="paisagem" alt="" loading="lazy" decoding="async" /><div class="telefone__botao"></div></div>
     <AeroIcon tipo="folha" class="cena-folha" />
     <span class="estrela estrela--um">✦</span><span class="estrela estrela--dois">✦</span>
   </div>
