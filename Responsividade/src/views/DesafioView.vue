@@ -12,7 +12,7 @@ const desafios = reactive([
     secao: 'Seção 1: Por que responsividade importa',
     pergunta:
       'No laboratório Celular sem óculos, com a meta viewport DESLIGADA, com quantos px de largura o navegador desenha a página?',
-    dica: 'Desligue a chave e leia a primeira frase abaixo dela.',
+    dica: 'Deixe a chave desligada e leia a primeira frase abaixo dela.',
     rota: '/por-que-importa#laboratorio',
     laboratorio: 'Celular sem óculos',
     resposta: 980,
