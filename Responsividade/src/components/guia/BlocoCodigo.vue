@@ -2,17 +2,21 @@
 import { computed, onBeforeUnmount, ref } from 'vue'
 const props = defineProps({ codigo: { type: String, required: true }, linguagem: { type: String, default: 'css' } })
 const codigoLimpo = computed(() => props.codigo.trim())
-const copia = ref('Copiar')
+// O estado guarda a situação, não o texto: assim mudar a redação do botão
+// não altera o que o leitor de tela anuncia.
+const ROTULOS = { ocioso: 'Copiar', ok: 'Copiado!', falha: 'Selecione para copiar' }
+const estado = ref('ocioso')
+const copia = computed(() => ROTULOS[estado.value])
 let timeout
 async function copiar() {
   try {
     await navigator.clipboard.writeText(codigoLimpo.value)
-    copia.value = 'Copiado!'
+    estado.value = 'ok'
   } catch {
-    copia.value = 'Selecione para copiar'
+    estado.value = 'falha'
   }
   clearTimeout(timeout)
-  timeout = setTimeout(() => { copia.value = 'Copiar' }, 2500)
+  timeout = setTimeout(() => { estado.value = 'ocioso' }, 2500)
 }
 onBeforeUnmount(() => clearTimeout(timeout))
 </script>
@@ -21,7 +25,7 @@ onBeforeUnmount(() => clearTimeout(timeout))
   <figure class="codigo">
     <figcaption class="codigo__barra">
       <span><span class="codigo__icone" aria-hidden="true">&lt;/&gt;</span> {{ linguagem }}</span>
-      <button type="button" @click="copiar" aria-live="polite" :aria-label="copia === 'Copiar' ? 'Copiar código ' + linguagem : copia">{{ copia }}</button>
+      <button type="button" @click="copiar" aria-live="polite" :aria-label="estado === 'ocioso' ? 'Copiar código ' + linguagem : copia">{{ copia }}</button>
     </figcaption>
     <pre tabindex="0" :aria-label="'Exemplo de código ' + linguagem"><code>{{ codigoLimpo }}</code></pre>
   </figure>
