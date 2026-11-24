@@ -97,7 +97,7 @@ watch(() => route.path, async () => {
 .explorador__nota { position: relative; z-index: 1; margin: 1.5rem 1.25rem 6rem; padding-top: 1.25rem; border-top: 1px solid #c2d9e3; font-size: .8125rem; color: #567785; }
 .explorador__nota .aero-icon { margin-bottom: .5rem; }
 .explorador__nota p { font-weight: 600; color: #467228; margin-bottom: .35rem; }
-.explorador__paisagem { height: 9rem; margin-top: auto; background: linear-gradient(#edf6fa, transparent 80%), url('/aero/mundo-aero.png') 78% 65% / auto 280px; opacity: .7; }
+.explorador__paisagem { height: 9rem; margin-top: auto; background: linear-gradient(#edf6fa, transparent 80%), url('@/assets/mundo-aero.jpg') 78% 65% / auto 280px; opacity: .7; }
 /* O padding vira variavel para que filhos possam sangrar ate a borda. */
 .conteudo { --pad-conteudo: clamp(1.25rem, 3vw, 2.5rem); min-width: 0; padding: var(--pad-conteudo); background: #fff; }
 .conteudo:focus { outline: none; }

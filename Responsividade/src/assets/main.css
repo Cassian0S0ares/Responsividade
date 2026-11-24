@@ -32,7 +32,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { min-width: 320px; scroll-padding-top: 1.5rem; }
 body { margin: 0; font-family: var(--fonte-base); font-size: var(--tam-m); line-height: 1.6; color: var(--cor-texto); background: #38a1cf; overflow-wrap: break-word; }
-body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: linear-gradient(#0072c51a, #00522b12), url('/aero/mundo-aero.png') center / cover; pointer-events: none; }
+body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: linear-gradient(#0072c51a, #00522b12), url('./mundo-aero.jpg') center / cover; pointer-events: none; }
 button, input, select, textarea { font: inherit; }
 button, select, input[type='checkbox'], input[type='radio'], input[type='range'] { cursor: pointer; }
 button { color: inherit; }
